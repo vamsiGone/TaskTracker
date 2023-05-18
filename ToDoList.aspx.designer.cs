@@ -11,79 +11,79 @@ namespace TaskTracker
 {
 
 
-    public partial class SiteMaster
+    public partial class ToDoList
     {
 
         /// <summary>
-        /// ProfilePic control.
+        /// lblTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ProfilePic;
+        protected global::System.Web.UI.WebControls.Label lblTask;
 
         /// <summary>
-        /// ProfileView control.
+        /// txtTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ProfileView;
+        protected global::System.Web.UI.WebControls.TextBox txtTask;
 
         /// <summary>
-        /// Logout control.
+        /// Add_Button control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Logout;
+        protected global::System.Web.UI.WebControls.Button Add_Button;
 
         /// <summary>
-        /// MainContent control.
+        /// Task_History control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Button Task_History;
 
         /// <summary>
-        /// chpwd control.
+        /// ViewAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton chpwd;
+        protected global::System.Web.UI.WebControls.Button ViewAll;
 
         /// <summary>
-        /// password1 control.
+        /// DateInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password1;
+        protected global::System.Web.UI.WebControls.TextBox DateInput;
 
         /// <summary>
-        /// password2 control.
+        /// GridRepeat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password2;
+        protected global::System.Web.UI.WebControls.Repeater GridRepeat;
 
         /// <summary>
-        /// Changepwd control.
+        /// lblGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Changepwd;
+        protected global::System.Web.UI.WebControls.Label lblGrid;
     }
 }
