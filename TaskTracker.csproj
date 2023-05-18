@@ -289,8 +289,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\TFSUSER\source\repos\BLL\BLL.csproj">
-      <Project>{369dff54-cbeb-4492-8e3b-d39739ddfe65}</Project>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{13590f1f-7a28-4a4b-af32-3716b4e74976}</Project>
       <Name>BLL</Name>
     </ProjectReference>
   </ItemGroup>
