@@ -52,7 +52,7 @@ namespace TaskTracker
                         string email1 = (ds.Tables[0].Rows[0]["Email"].ToString());
                         string pwd = (ds.Tables[0].Rows[0]["Password"].ToString());
 
-                        if (email1 == "Vamsi@admin.com" && pwd == "Admin@123")
+                        if (email1 == "vamsi@admin.com" && pwd == "Admin@123#")
                         {
                             Session["CurrentUser"] = Email;
                             txtEmail.Text = String.Empty;
