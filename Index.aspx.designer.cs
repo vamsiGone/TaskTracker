@@ -11,7 +11,7 @@ namespace TaskTracker
 {
 
 
-    public partial class Admin
+    public partial class Index
     {
     }
 }

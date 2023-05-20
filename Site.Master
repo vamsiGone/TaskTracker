@@ -4,229 +4,61 @@
 
 <html lang="en">
 <head runat="server">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
     <title><%: Page.Title %> </title>
 
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
-
-    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
-    <link rel="stylesheet" href="css/master.css" />
-    <link href="assets/plugins/toastr/toastr.min.css" rel="stylesheet" />
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-    <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-    <script src="assets/plugins/toastr/toastr.min.js"></script>
-    <script src="css/toaster.js" ></script>
-    <script type="text/javascript" src="css/valid.js" ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/Dashboard.css" />
+    <script type="text/javascript" src="css/Dashboard.js"></script>
+
+    <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" />
+
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css " />
 
 </head>
-<body>
+<body id="body-pd">
     <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
 
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="bootstrap" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
-
-            </Scripts>
-        </asp:ScriptManager>
-
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-
-                <div class="dropdown btn-group" style="float: right; top: -3px;">
-                    <asp:ImageButton ID="ProfilePic" class="img-circle btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ImageUrl="~/Images/user.png" runat="server" Style="position: relative; top: 4px; float: right; right: 10px; height: 50px; background-blend-mode: color-burn" />
-                    <ul class="dropdown-menu" style="background-color: transparent; border: 1px solid white">
-                        <li>
-                            <asp:LinkButton ID="ProfileView" CssClass="dropdown-item" data-toggle="modal" data-target="#myModal" runat="server" ForeColor="white">Profile</asp:LinkButton>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <asp:LinkButton ID="Logout" class="dropdown-item" data-toggle="tooltip" title="logout" runat="server" ForeColor="white" OnClick="Logout_Click">Logout</asp:LinkButton>
-                        </li>
-                    </ul>
+        <div>
+            <header class="header" id="header">
+                <div class="header_toggle"><i class='bx bx-menu' id="header-toggle"></i></div>
+                <div class="header_img">
+                    <img src="https://i.imgur.com/hczKIze.jpg" alt="">
                 </div>
-
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                       
-                    </button>
-                    <a class="navbar-brand" style="font-size: x-large; color: white;">Task Tracker </a>
-                </div>
-
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Register">Register</a></li>
-                        <li><a runat="server" href="~/login">Login</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
-                        <li><a runat="server" href="~/ToDoList">ToDoList</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-
+            </header>
         </div>
-        <div class="container body-content">
+        <div class="l-navbar bg-dark" id="nav-bar">
+            <nav class="nav">
+                <div>
+                    <a href="#" class="nav_logo"><i class='bx bx-layer nav_logo-icon'></i><span class="nav_logo-name">Task Tracker</span> </a>
+
+                    <div class="nav_list">
+                        <a href="Index.aspx" class="nav_link active"><i class='bx bx-grid-alt nav_icon'></i><span class="nav_name">Dashboard</span> </a>
+                        <a href="Register.aspx" class="nav_link"><i class='bx bx-user nav_icon'></i><span class="nav_name">Sign Up</span> </a>
+                        <a href="Login.aspx" class="nav_link"><i class='bx bx-message-square-detail nav_icon'></i><span class="nav_name">Sign In</span> </a>
+                        <a href="About.aspx" class="nav_link"><i class='bx bx-bookmark nav_icon'></i><span class="nav_name">About</span> </a>
+                        <a href="Contact.aspx" class="nav_link"><i class='bx bx-folder nav_icon'></i><span class="nav_name">Contact</span> </a>
+                        <a href="ToDoList.aspx" class="nav_link"><i class='bx bx-bar-chart-alt-2 nav_icon'></i><span class="nav_name">To Do List</span> </a>
+
+                    </div>
+                </div>
+                <a href="#" class="nav_link"><i class='bx bx-log-out nav_icon'></i><span class="nav_name">SignOut</span> </a>
+            </nav>
+        </div>
+        <div class="container-fluid bg-dark text-white border py-5 my-5">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
-
-
-
-
-        <%--profile modal start--%>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" id="profileModal">
-                    <div class="modal-header">
-                          <div style="background:white; float:right;">
-                            <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal">X</button>
-
-                        </div>
-                        <h4 class="modal-title" id="myModalLabel" style="color: #00FF00;">Profile</h4>
-                    </div>
-                    <div class="modal-body">
-                        <center>
-                            <img src="https://localhost:44345/Images/user.png" name="aboutme" width="140" height="140" border="0" class="img-circle" />
-
-                            <h3 class="media-heading" style="color: #00FF00;">Vamsi Reddy </h3>
-                            <br />
-                            <p style="color: white;"><b style="color: #00FF00;">Email:</b> vamsigone001@gmail.com</p>
-                            <br />
-                            <asp:LinkButton ID="chpwd" runat="server" data-toggle="modal" data-target="#Pwdmodal" ForeColor="white">Change Password</asp:LinkButton>
-
-                        </center>
-                        <hr>
-                        <center>
-                            <p class="text-left" style="color: white;">
-                                <strong style="color: #00FF00;">Bio: </strong>
-                                <br>
-                                Add Something..........!
-                            </p>
-                            <br>
-                        </center>
-                    </div>
-                    <div class="modal-footer">
-                        <center>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                        </center>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%-- profile modal end--%>
-
-        <%--Password change modal start--%>
-        <div class="modal fade" id="Pwdmodal" tabindex="-1" role="dialog" aria-labelledby="PwdLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" id="PwdContent">
-                    <div class="modal-header">
-                        <div style="background:white; float:right;">
-                            <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal">X</button>
-
-                        </div>
-                        <h4 class="modal-title" id="PwdLabel" style="color:greenyellow;">Password Change</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-sm-7" style="margin-left:130px;">
-                                <asp:TextBox ID="password1"  class="input-lg form-control" TextMode="Password" runat="server" onkeyUp="CheckPassword();" placeholder="New Password" Style="display: inline-block;"></asp:TextBox>
-                                 <span style="color: white"><i class="bi bi-info-circle" data-toggle="modal" data-target="#Policy" title="click"></i></span>
-                               
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <p style="color:white;"><span id="8char" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>8 Characters Long<br>
-                                        <span id="ucase" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Uppercase Letter</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p style="color:white;"><span id="lcase" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Lowercase Letter<br>
-                                        <span id="num" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Number</p>
-                                    </div>
-                                </div>
-                                <asp:TextBox ID="password2" runat="server" class="input-lg form-control" TextMode="Password" onkeyUp="CheckPassword();" placeholder="Repeat Password"></asp:TextBox>
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <p style="color:white;"><span id="pwmatch" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>Passwords Match</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/col-sm-6-->
-                        </div>
-                        <!--/row-->
-                    </div>
-                    <div class="modal-footer">
-                        <center>
-                            <asp:Button ID="Changepwd" CssClass="btn btn-primary" runat="server" Text="Change Password" OnClick="Changepwd_Click" OnClientClick="return ModMatch();" />
-                        </center>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%--password change end modal--%>
-
-
-
-                     <%-- password policy modal start--%>
-                        <div class="modal" id="Policy" tabindex="-1" role="dialog">
-                            <div class="modal-dialog modal-dialog-centered" >
-                                <div class="modal-content" id="PwdPolicy">
-                                    <div class="modal-header">
-                                         <div style="background: white; float: right;">
-                                            <button type="button" aria-label="Close" data-dismiss="modal">X</button>
-
-                                        </div>
-                                        <h4 class="modal-title" style="color: #00FF00;">Password Policy</h4>
-                                       
-                                    </div>
-                                    <div class="modal-body">
-                                       
-                                        <ul>
-                                            <li style="color: white;">A Password must contain 8 Characters </li>
-                                            <li style="color: white;">A Password must contain 1 UpperCase(A) letter</li>
-                                            <li style="color: white;">A Password must contain 1 LowerCase(a) letter</li>
-                                            <li style="color: white;">A password must contain 1 Number</li>
-                                            <li style="color: white;">A password must contain 1 Special Character</li>
-
-                                        </ul>
-                                    </div>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <%--password Policy modal ends--%>
-
     </form>
-    <%--  tooltip enable script--%>
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-
-    </script>
-
-
-
 </body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#header-toggle').click();
+    });
+</script>
 </html>
