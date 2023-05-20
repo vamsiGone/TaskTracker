@@ -1,8 +1,5 @@
 ﻿
-body {
-    background-image: url('../images/background.jpg');
-    background-size: cover;
-}
+
    
 input[type='text'] {
     color: white;
@@ -20,6 +17,11 @@ input[type='password'] {
     color: white;
     border: 2px solid blue;
     background-color: transparent;
+}
+.dropdown-menu {
+    background-color: transparent;
+    border: 1px solid white;
+    color:white;
 }
 
 .dropdown-menu > li > a:hover {
@@ -138,6 +140,7 @@ td {
     top: 50%;
     transform: translate(-50%, -50%);
 }
-#PwdContent{
-    background:black;
+#PwdContent {
+    background: black;
+  
 }

@@ -9,7 +9,7 @@
         // Validate that all variables exist
         if (toggle && nav && bodypd && headerpd) {
             toggle.addEventListener('click', () => {
-                // show navbar
+                // show navbar 
                 nav.classList.toggle('show')
                 // change icon
                 toggle.classList.toggle('bx-x')
@@ -35,4 +35,6 @@
     linkColor.forEach(l => l.addEventListener('click', colorLink))
 
     // Your code to run since DOM is loaded and ready
+    
+   
 });

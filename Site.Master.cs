@@ -26,31 +26,31 @@ namespace TaskTracker
             Response.Redirect("Login.aspx");
         }
 
-        //[Obsolete]
-        //protected void Changepwd_Click(object sender, EventArgs e)
-        //{
-        //    if (currentUser == "" || currentUser == null)
-        //    {
-        //        ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('error','First Sign in, Try Again')});", true);
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        string PassText = password2.Text.Trim();
-        //        using (DataSet datagrid = objTransactionBO.PwdChange(currentUser, PassText))
-        //        {
-        //            if (datagrid != null && datagrid.Tables.Count > 0 && datagrid.Tables[0].Rows.Count > 0)
-        //            {
-        //                string Status = (datagrid.Tables[0].Rows[0]["com"].ToString());
+        [Obsolete]
+        protected void Changepwd_Click(object sender, EventArgs e)
+        {
+            if (currentUser == "" || currentUser == null)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('error','First Sign in, Try Again')});", true);
+                return;
+            }
+            else
+            {
+                string PassText = password2.Text.Trim();
+                using (DataSet datagrid = objTransactionBO.PwdChange(currentUser, PassText))
+                {
+                    if (datagrid != null && datagrid.Tables.Count > 0 && datagrid.Tables[0].Rows.Count > 0)
+                    {
+                        string Status = (datagrid.Tables[0].Rows[0]["com"].ToString());
 
-        //                if (Status == "1")
-        //                {
-        //                    ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Password Changed..!')});", true);
-        //                    return;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+                        if (Status == "1")
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Password Changed..!')});", true);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

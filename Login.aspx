@@ -20,7 +20,7 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-4" id="LogDiv" style="top:100px;">
                 
-                        <h2 class="labelhead">Login Form</h2>
+                        <h2 class="labelhead">Sign In</h2>
                         <br />
                         <asp:Panel ID="Panel1" runat="server" DefaultButton="Login_Button">
 
@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lblPassword" class="label" runat="server" AssociatedControlID="txtPassword">Password:</asp:Label><br />
                                 <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" Style="display: inline-block;"></asp:TextBox>&nbsp;&nbsp;
-                                <span style="color: white"><i class="bi bi-info-circle" data-toggle="modal" data-target="#Policy" title="click"></i></span>
+                                <span style="color: white"><i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#Policy" title="click"></i></span>
                             </div>
                             <br />
                             <div class="form-group">
