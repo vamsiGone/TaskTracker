@@ -23,18 +23,20 @@
 
     showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
 
-    /*===== LINK ACTIVE =====*/
-    const linkColor = document.querySelectorAll('.nav_link')
+    const links = document.querySelectorAll('.nav_link');
 
-    function colorLink() {
-        if (linkColor) {
-            linkColor.forEach(l => l.classList.remove('active'))
-            this.classList.add('active')
-        }
+    if (links.length) {
+        links.forEach((link) => {
+            link.addEventListener('click', (e) => {
+                links.forEach((link) => {
+                    link.classList.remove('active');
+                });
+                link.classList.add('active');
+
+                e.preventDefault();
+            });
+        });
     }
-    linkColor.forEach(l => l.addEventListener('click', colorLink))
-
-    // Your code to run since DOM is loaded and ready
     
    
 });
