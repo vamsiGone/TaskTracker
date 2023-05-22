@@ -108,13 +108,13 @@
                     </div>
                     <div class="modal-body">
                         <center>
-                            <img src="https://localhost:44345/Images/user.png" name="aboutme" width="140" height="140" border="0" class="img-circle" />
+                            <img src="Images/user.png" name="aboutme" width="140" height="140" border="0" class="img-circle" />
 
                             <h3 class="media-heading" style="color: #00FF00;">Vamsi Reddy </h3>
                             <br />
                             <p style="color: white;"><b style="color: #00FF00;">Email:</b> vamsigone001@gmail.com</p>
                             <br />
-                            <asp:LinkButton ID="chpwd" runat="server" data-toggle="modal" data-target="#Pwdmodal" ForeColor="white">Change Password</asp:LinkButton>
+                            <asp:LinkButton ID="chpwd" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#Pwdmodal" ForeColor="white">Change Password</asp:LinkButton>
 
                         </center>
                         <hr>
