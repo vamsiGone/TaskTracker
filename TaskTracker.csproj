@@ -150,7 +150,6 @@
     <Content Include="Images\delete.png" />
     <Content Include="Images\edit.png" />
     <Content Include="Images\user.png" />
-    <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -215,13 +214,6 @@
     </Compile>
     <Compile Include="GridList.aspx.designer.cs">
       <DependentUpon>GridList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -289,13 +281,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{13590f1f-7a28-4a4b-af32-3716b4e74976}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
     <ProjectReference Include="AdminControl\AdminControl.csproj">
       <Project>{e1e025ca-1101-4277-af01-6416c38cd590}</Project>
       <Name>AdminControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="BLL\BLL.csproj">
+      <Project>{369dff54-cbeb-4492-8e3b-d39739ddfe65}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="DAL\DAL.csproj">
+      <Project>{66b5866a-8399-4da1-b18e-e73d22681a05}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

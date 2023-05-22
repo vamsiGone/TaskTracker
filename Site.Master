@@ -79,10 +79,6 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/Register">Register</a></li>
                         <li><a runat="server" href="~/login">Login</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
-                        <li><a runat="server" href="~/ToDoList">ToDoList</a></li>
-                        
                     </ul>
                 </div>
             </div>
@@ -112,7 +108,7 @@
 
                             <h3 class="media-heading" style="color: #00FF00;">Vamsi Reddy </h3>
                             <br />
-                            <p style="color: white;"><b style="color: #00FF00;">Email:</b> vamsigone001@gmail.com</p>
+                            <p style="color: white;"><b style="color: #00FF00;">Email:</b> <%=currentUser %></p>
                             <br />
                             <asp:LinkButton ID="chpwd" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#Pwdmodal" ForeColor="white">Change Password</asp:LinkButton>
 

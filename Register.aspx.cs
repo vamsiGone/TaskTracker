@@ -19,8 +19,8 @@ namespace TaskTracker
         }
         protected void Register_Button_Click(object sender, EventArgs e)
         {
-            string Fname, Email, Password, CnfPwd;
-            Fname = txtUsername.Text.Trim();
+            string Name, Email, Password, CnfPwd;
+            Name = txtUsername.Text.Trim();
             Email = txtEmail.Text.Trim();
             Password = txtPassword.Text.Trim();
             CnfPwd = txtConfirmPassword.Text.Trim();
@@ -36,14 +36,14 @@ namespace TaskTracker
             }
             else
             {
-                using (DataSet ds = objLoginBO.SaveRegister("Check", Fname, Email, Password))
+                using (DataSet ds = objLoginBO.SaveRegister("Check", Name, Email, Password))
                 {
                     if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                     {
                         string Status = (ds.Tables[0].Rows[0]["com"].ToString());
                         if (Status == "0")
                         {
-                            using (DataSet dts = objLoginBO.SaveRegister("Insert", Fname, Email, Password))
+                            using (DataSet dts = objLoginBO.SaveRegister("Insert", Name, Email, Password))
                             {
                                 if (dts != null && dts.Tables.Count > 0 && dts.Tables[0].Rows.Count > 0)
                                 {

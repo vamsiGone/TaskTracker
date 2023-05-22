@@ -13,6 +13,7 @@ namespace DAL
     {
         private SqlConnection objSqlConnection;
 
+        [Obsolete]
         public LoginDAO()
         {
             objSqlConnection = null;
@@ -20,13 +21,13 @@ namespace DAL
 
         }
 
-        public DataSet SaveRegister(string status, string Fname, string Email, string Password)
+        public DataSet SaveRegister(string status, string Name, string Email, string Password)
         {
             DataSet ds = new DataSet();
             SqlCommand cmd = new SqlCommand("RegisterDetails", objSqlConnection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Action", status);
-            cmd.Parameters.AddWithValue("@Fname", Fname);
+            cmd.Parameters.AddWithValue("@Name", Name);
 
             cmd.Parameters.AddWithValue("@Email", Email);
             cmd.Parameters.AddWithValue("@Password", Password);
@@ -36,12 +37,13 @@ namespace DAL
             return ds;
         }
 
-        public DataSet CheckUserCredential(string strLoginID)
+        public DataSet CheckUserCredential(string strLoginID, string pwd)
         {
             DataSet ds = new DataSet();
             SqlCommand cmd = new SqlCommand("CheckEmployeeCredential", objSqlConnection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@LoginID", strLoginID);
+            cmd.Parameters.AddWithValue("@pwd", pwd);
 
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             sda.Fill(ds);

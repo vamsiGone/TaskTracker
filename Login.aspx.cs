@@ -45,48 +45,57 @@ namespace TaskTracker
             }
             else
             {
-                using (DataSet ds = objLoginBO.CheckUserCredential(Email))
+                using (DataSet ds = objLoginBO.CheckUserCredential(Email, Password))
                 {
                     if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                     {
-                        string email1 = (ds.Tables[0].Rows[0]["Email"].ToString());
-                        string pwd = (ds.Tables[0].Rows[0]["Password"].ToString());
+                        string Redirect = (ds.Tables[0].Rows[0]["Redirect"].ToString());
 
-                        if (email1 == "vamsi@admin.com" && pwd == "Admin@123#")
+                        if (Redirect == "1")
                         {
-                            Session["CurrentUser"] = Email;
+                            string Name = (ds.Tables[1].Rows[0]["Name"].ToString());
+                            string Email1 = (ds.Tables[1].Rows[0]["Email"].ToString());
+                            string pwd = (ds.Tables[1].Rows[0]["Password"].ToString());
+                            string Bio = (ds.Tables[1].Rows[0]["Bio"].ToString());
+                            string PhotoUrl = (ds.Tables[1].Rows[0]["PhotoUrl"].ToString());
+                            string TasksCreated = (ds.Tables[1].Rows[0]["TasksCreated"].ToString());
+                            string TasksCompleted = (ds.Tables[1].Rows[0]["TasksCompleted"].ToString());
+
+
+                            Session["Name"] = Name;
+                            Session["CurrentUser"] = Email1;
+                            Session["pwd"] = pwd;
+                            Session["Bio"] = Bio;
+                            Session["PhotoUrl"] = PhotoUrl;
+                            Session["TasksCreated"] = TasksCreated;
+                            Session["TasksCompleted"] = TasksCompleted;
+
                             txtEmail.Text = String.Empty;
                             txtPassword.Text = String.Empty;
-                            Response.Redirect("AdminControl/Contact.aspx");
-                        }
 
-                        if (email1 == Email && Password == pwd)
-                        {
-                            Session["CurrentUser"] = Email;
-                            txtEmail.Text = String.Empty;
-                            txtPassword.Text = String.Empty;
-                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','User Logged In')});", true);
+                            if (Name == "Admin")
+                            {
+                                Response.Redirect("AdminControl/Dashboard.aspx");
+                            }
+                            else
+                            {
+                                Response.Redirect("ToDoList.aspx");
+                            }
 
-                            Response.Redirect("ToDoList.aspx");
-
-                        }
-                        else if (email1 == Email && Password != pwd)
-                        {
-                            txtPassword.Text = "";
-                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('error','Invalid Password')});", true);
-                            return;
                         }
                         else
                         {
-                            txtEmail.Text = "";
-                            txtPassword.Text = "";
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('error','Invalid Email / Password')});", true);
+                            return;
                         }
+
                     }
-                    ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('error','Please Register and try again')});", true);
-                    return;
                 }
+                ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('error','Account Not Found, Please Register')});", true);
+                return;
             }
         }
+
 
         protected void Register_Button_Click(object sender, EventArgs e)
         {
