@@ -11,12 +11,14 @@ namespace TaskTracker
 {
     public partial class Register : System.Web.UI.Page
     {
-
+        [Obsolete]
         LoginBO objLoginBO = new LoginBO();
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+
+        [Obsolete]
         protected void Register_Button_Click(object sender, EventArgs e)
         {
             string Name, Email, Password, CnfPwd;
