@@ -57,7 +57,7 @@ namespace TaskTracker
                             Session["CurrentUser"] = Email;
                             txtEmail.Text = String.Empty;
                             txtPassword.Text = String.Empty;
-                            Response.Redirect("Admin.aspx");
+                            Response.Redirect("AdminControl/Contact.aspx");
                         }
 
                         if (email1 == Email && Password == pwd)
