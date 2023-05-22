@@ -104,11 +104,11 @@
                     </div>
                     <div class="modal-body">
                         <center>
-                            <img src="Images/user.png" name="aboutme" width="140" height="140" border="0" class="img-circle" />
+                            <img src="<%=PhotoUrl %>" name="aboutme" width="140" height="140" border="0" class="img-circle" />
 
-                            <h3 class="media-heading" style="color: #00FF00;">Vamsi Reddy </h3>
+                            <h3 class="media-heading" style="color: #00FF00;"><%=Name %></h3>
                             <br />
-                            <p style="color: white;"><b style="color: #00FF00;">Email:</b> <%=currentUser %></p>
+                            <p style="color: white;"><b style="color: #00FF00;">Email:</b> <%=currentUser %> </p>
                             <br />
                             <asp:LinkButton ID="chpwd" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#Pwdmodal" ForeColor="white">Change Password</asp:LinkButton>
 
@@ -118,7 +118,7 @@
                             <p class="text-left" style="color: white;">
                                 <strong style="color: #00FF00;">Bio: </strong>
                                 <br>
-                                Add Something..........!
+                                <%=Bio %>
                             </p>
                             <br>
                         </center>
@@ -147,6 +147,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-sm-7" style="margin-left:130px;">
+                                <asp:TextBox ID="Password" class="input-lg form-control" TextMode="Password" runat="server" onkeyUp="currentPwd();" placeholder="Current Password"></asp:TextBox>
                                 <asp:TextBox ID="password1"  class="input-lg form-control" TextMode="Password" runat="server" onkeyUp="CheckPassword();" placeholder="New Password" Style="display: inline-block;"></asp:TextBox>
                                  <span style="color: white"><i class="bi bi-info-circle" data-toggle="modal" data-target="#Policy" title="click"></i></span>
                                
@@ -218,6 +219,15 @@
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
+
+            var SessionUser = '<%=currentUser%>';
+            if (SessionUser == null || SessionUser == "") {
+                $('#ProfileView').click(function () {
+                    AlertMessage('error', 'Sign in First, Try Again', true);
+
+                    return false;
+                });
+            }
         });
 
     </script>

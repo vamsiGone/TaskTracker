@@ -73,7 +73,7 @@ namespace TaskTracker
                             txtEmail.Text = String.Empty;
                             txtPassword.Text = String.Empty;
 
-                            if (Name == "Admin")
+                            if (Name == "Admin" && Email == "vamsi@admin.com")
                             {
                                 Response.Redirect("AdminControl/Dashboard.aspx");
                             }

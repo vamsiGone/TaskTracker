@@ -87,6 +87,20 @@ function Match() {
     }
 }
 
+function currentPwd() {
+
+    var currentpwd = $("#Password").val();
+    var SessionPwd = '<%=pwd%>';
+
+    if (currentpwd !== SessionPwd) {
+        AlertMessage('error', 'Incorrect Password', true);
+
+        return false;
+    } else {
+        AlertMessage('success', 'Password Matched', true);
+    }
+}
+
 
 
 
