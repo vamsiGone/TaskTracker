@@ -15,18 +15,17 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
-    <link href="css/master.css" rel="stylesheet" />
-     <link href="assets/plugins/toastr/toastr.min.css" rel="stylesheet" />
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-    <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-    <script src="assets/plugins/toastr/toastr.min.js"></script>
-    <script src="css/toaster.js" ></script>
-    <script type="text/javascript" src="css/valid.js" ></script>
+    <link href="~/css/master.css" rel="stylesheet" />
+    <link href="~/assets/plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <script src="../assets/plugins/jquery/jquery.min.js"></script>
+    <script src="../assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="../assets/plugins/toastr/toastr.min.js"></script>
+    <script src="../css/toaster.js"></script>
+    <script src="../css/valid.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
 </head>
 <body>
-    <form runat="server">  
+    <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
 
@@ -69,7 +68,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                       
+
                     </button>
                     <a class="navbar-brand" style="font-size: x-large; color: white;">Task Tracker </a>
                 </div>
@@ -95,7 +94,7 @@
             <div class="modal-dialog">
                 <div class="modal-content" id="profileModal">
                     <div class="modal-header">
-                          <div style="background:white; float:right;">
+                        <div style="background: white; float: right;">
                             <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal">X</button>
 
                         </div>
@@ -103,7 +102,7 @@
                     </div>
                     <div class="modal-body">
                         <center>
-                            <img src="<%=PhotoUrl %>" name="aboutme" width="140" height="140" border="0" class="img-circle" />
+                            <img src="../<%=PhotoUrl %>" name="aboutme" width="140" height="140" border="0" class="img-circle" />
 
                             <h3 class="media-heading" style="color: #00FF00;"><%=Name %></h3>
                             <br />
@@ -137,34 +136,40 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content" id="PwdContent">
                     <div class="modal-header">
-                        <div style="background:white; float:right;">
+                        <div style="background: white; float: right;">
                             <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal">X</button>
 
                         </div>
-                        <h4 class="modal-title" id="PwdLabel" style="color:greenyellow;">Password Change</h4>
+                        <h4 class="modal-title" id="PwdLabel" style="color: greenyellow;">Password Change</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-sm-7" style="margin-left:130px;">
-                                <asp:TextBox ID="Password" class="input-lg form-control" TextMode="Password" runat="server" onkeyUp="currentPwd();" placeholder="Current Password"></asp:TextBox><br />
-                                <asp:TextBox ID="password1"  class="input-lg form-control" TextMode="Password" runat="server" onkeyUp="CheckPassword();" placeholder="New Password" Style="display: inline-block;"></asp:TextBox>
-                                 <span style="color: white"><i class="bi bi-info-circle" data-toggle="modal" data-target="#Policy" title="click"></i></span>
-                               
+                            <div class="col-sm-7" style="margin-left: 130px;">
+                                <asp:TextBox ID="Password" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" runat="server" placeholder="Current Password"></asp:TextBox>
+                                <asp:LinkButton ID="LinkButton1" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#EmailEntry" ForeColor="YellowGreen">forgot password?</asp:LinkButton><br />
+                                <br />
+                                <asp:TextBox ID="password1" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" runat="server" onkeyUp="CheckPassword();" placeholder="New Password" Style="display: inline-block;"></asp:TextBox>
+                                <span style="color: white"><i class="bi bi-info-circle" data-toggle="modal" data-target="#Policy" title="click"></i></span>
+
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <p style="color:white;"><span id="8char" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>8 Characters Long<br>
-                                        <span id="ucase" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Uppercase Letter</p>
+                                        <p style="color: white;">
+                                            <span id="8char" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>8 Characters Long<br>
+                                            <span id="ucase" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Uppercase Letter
+                                        </p>
                                     </div>
                                     <div class="col-sm-6">
-                                        <p style="color:white;"><span id="lcase" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Lowercase Letter<br>
-                                        <span id="num" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Number</p>
+                                        <p style="color: white;">
+                                            <span id="lcase" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Lowercase Letter<br>
+                                            <span id="num" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Number
+                                        </p>
                                     </div>
                                 </div>
-                                <asp:TextBox ID="password2" runat="server" class="input-lg form-control" TextMode="Password" onkeyUp="CheckPassword();" placeholder="Repeat Password"></asp:TextBox>
+                                <asp:TextBox ID="password2" runat="server" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" onkeyUp="CheckPassword();" placeholder="Repeat Password"></asp:TextBox>
 
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <p style="color:white;"><span id="pwmatch" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>Passwords Match</p>
+                                        <p style="color: white;"><span id="pwmatch" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>Passwords Match</p>
                                     </div>
                                 </div>
                             </div>
@@ -184,34 +189,59 @@
 
 
 
-                     <%-- password policy modal start--%>
-                        <div class="modal" id="Policy" tabindex="-1" role="dialog">
-                            <div class="modal-dialog modal-dialog-centered" >
-                                <div class="modal-content" id="PwdPolicy">
-                                    <div class="modal-header">
-                                         <div style="background: white; float: right;">
-                                            <button type="button" aria-label="Close" data-dismiss="modal">X</button>
+        <%-- password policy modal start--%>
+        <div class="modal" id="Policy" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" id="PwdPolicy">
+                    <div class="modal-header">
+                        <div style="background: white; float: right;">
+                            <button type="button" aria-label="Close" data-dismiss="modal">X</button>
 
-                                        </div>
-                                        <h4 class="modal-title" style="color: #00FF00;">Password Policy</h4>
-                                       
-                                    </div>
-                                    <div class="modal-body">
-                                       
-                                        <ul>
-                                            <li style="color: white;">A Password must contain 8 Characters </li>
-                                            <li style="color: white;">A Password must contain 1 UpperCase(A) letter</li>
-                                            <li style="color: white;">A Password must contain 1 LowerCase(a) letter</li>
-                                            <li style="color: white;">A password must contain 1 Number</li>
-                                            <li style="color: white;">A password must contain 1 Special Character</li>
-
-                                        </ul>
-                                    </div>
-                                   
-                                </div>
-                            </div>
                         </div>
-                        <%--password Policy modal ends--%>
+                        <h4 class="modal-title" style="color: #00FF00;">Password Policy</h4>
+
+                    </div>
+                    <div class="modal-body">
+
+                        <ul>
+                            <li style="color: white;">A Password must contain 8 Characters </li>
+                            <li style="color: white;">A Password must contain 1 UpperCase(A) letter</li>
+                            <li style="color: white;">A Password must contain 1 LowerCase(a) letter</li>
+                            <li style="color: white;">A password must contain 1 Number</li>
+                            <li style="color: white;">A password must contain 1 Special Character</li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <%--password Policy modal ends--%>
+
+       <%-- forgot password starts--%>
+        <div class="modal" id="EmailEntry" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" id="EmailEntryy">
+                    <div class="modal-header">
+                        <div style="background: white; float: right;">
+                            <button type="button" aria-label="Close" data-dismiss="modal">X</button>
+
+                        </div>
+                        <h4 class="modal-title" style="color: #00FF00;">Email</h4>
+
+                    </div>
+                    <div class="modal-body">
+                        <p style="color:white">Enter the Registered Email with this account</p><br />
+                        <asp:TextBox ID="EmailEnter" Textmode="Email" AutoCompleteType="Disabled" runat="server" class="input-lg form-control" Placeholder="Registered Email"></asp:TextBox><br />
+                        <asp:Button ID="SendMail" class="btn btn-danger" runat="server" Text="Send" onclick="SendMail_Click"/>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+       <%-- forgot password ends--%>
+
 
     </form>
     <%--  tooltip enable script--%>
@@ -230,7 +260,10 @@
 
                 });
             }
+
         });
+
+
 
     </script>
 

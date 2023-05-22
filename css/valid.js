@@ -4,7 +4,20 @@ function CheckPassword() {
     var ucase = new RegExp("[A-Z]+");
     var lcase = new RegExp("[a-z]+");
     var num = new RegExp("[0-9]+");
+    if ($("#password1").val().length == 0)  {
+        AlertMessage('error', 'New Password Should not be empty', true);
+        return false;
+    }
+    if ($("#password1").val().length >= 8) {
 
+        $("#8char").removeClass("glyphicon-remove");
+        $("#8char").addClass("glyphicon-ok");
+        $("#8char").css("color", "#00A41E");
+        if ($("#password2").val().length == 0) {
+            AlertMessage('error', 'Repeat Password Should not be empty', true);
+            return false;
+        }
+    }
     if ($("#password1").val().length >= 8) {
         $("#8char").removeClass("glyphicon-remove");
         $("#8char").addClass("glyphicon-ok");
@@ -87,19 +100,17 @@ function Match() {
     }
 }
 
-function currentPwd() {
+//function currentPwd() {
 
-    var currentpwd = $("#Password").val();
-    var SessionPwd = '<%=pwd%>';
+//    var currentpwd = $("#Password").val();
+//    var SessionPwd = "@currentUser";
 
-    if (currentpwd !== SessionPwd) {
-        AlertMessage('error', 'Incorrect Password', true);
-
-        return false;
-    } else {
-        AlertMessage('success', 'Password Matched', true);
-    }
-}
+//    if (currentpwd == SessionPwd) {
+//        AlertMessage('success', 'Password Matched', true);
+//    } else {
+//        AlertMessage('error', 'Incorrect Password', true);
+//    } 
+//}
 
 
 

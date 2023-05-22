@@ -74,7 +74,7 @@ input[type='password'] {
     color: #00FF00;
 }
 
-.jumbotron, .datepicker, #profileModal, #PwdPolicy, #RegDiv, #LogDiv, #ContactDiv {
+.jumbotron, .datepicker, #profileModal, #PwdPolicy, #RegDiv, #LogDiv, #ContactDiv, #EmailEntryy {
     background: rgba(162, 181, 192, 0.11);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
