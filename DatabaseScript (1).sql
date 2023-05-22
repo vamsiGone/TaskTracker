@@ -407,11 +407,20 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Register](
 	[SNO] [int] IDENTITY(1,1) NOT NULL,
-	[Fname] [varchar](100) NOT NULL,
+	[Name] [varchar](100) NOT NULL,
 	[Email] [varchar](100) NOT NULL,
-	[Password] [varchar](100) NOT NULL
+	[Password] [varchar](100) NOT NULL,
+	[PhotoUrl] [varchar](800) NOT NULL DEFault 'Images/user.png',
+	[Bio] [varchar](8000) NOT NULL Default 'Add Bio',
+	[TasksCreated] [int] NOT NULL Default 0,
+	[TasksCompleted] [int] NOT NULL DEFAULT 0,
+UNIQUE NONCLUSTERED 
+(
+	[Email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
 GO
 SET ANSI_PADDING OFF
 GO
