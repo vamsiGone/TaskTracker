@@ -131,7 +131,7 @@
         </div>
         <%-- profile modal end--%>
 
-        <%--Password change modal start--%>
+   <%--Password change modal start--%>
         <div class="modal fade" id="Pwdmodal" tabindex="-1" role="dialog" aria-labelledby="PwdLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" id="PwdContent">
@@ -145,7 +145,9 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-sm-7" style="margin-left: 130px;">
+                                
                                 <asp:TextBox ID="Password" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" runat="server" placeholder="Current Password"></asp:TextBox>
+
                                 <asp:LinkButton ID="LinkButton1" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#EmailEntry" ForeColor="YellowGreen">forgot password?</asp:LinkButton><br />
                                 <br />
                                 <asp:TextBox ID="password1" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" runat="server" onkeyUp="CheckPassword();" placeholder="New Password" Style="display: inline-block;"></asp:TextBox>
@@ -233,7 +235,7 @@
                     <div class="modal-body">
                         <p style="color:white">Enter the Registered Email with this account</p><br />
                         <asp:TextBox ID="EmailEnter" Textmode="Email" AutoCompleteType="Disabled" runat="server" class="input-lg form-control" Placeholder="Registered Email"></asp:TextBox><br />
-                        <asp:Button ID="SendMail" class="btn btn-danger" runat="server" Text="Send" onclick="SendMail_Click"/>
+                        <asp:Button ID="ForgotMail" class="btn btn-danger" runat="server" Text="Send" onclick="ForgotMail_Click"/>
                     </div>
 
                 </div>
@@ -242,7 +244,8 @@
 
        <%-- forgot password ends--%>
 
-
+        <asp:Label ID="CurrentPwd" runat="server" Visible="true"></asp:Label>       
+        <asp:Label ID="CurrentUserMail" runat="server" Visible="true"></asp:Label>
     </form>
     <%--  tooltip enable script--%>
     <script>
@@ -260,6 +263,33 @@
 
                 });
             }
+
+            $("#Password").change(function () {
+                var currentpwd = $("#Password").val();
+                var SessionPwd = document.getElementById('<%= CurrentPwd.ClientID %>').innerText;
+
+                if (currentpwd == SessionPwd) {
+                    AlertMessage('success', 'Password Matched', true);
+                    return true;
+                } else {
+                    AlertMessage('error', 'Incorrect Password', true);
+                    return false;
+                }
+            });
+            
+
+            $("#EmailEnter").change(function () {
+                var currentemail = $("#EmailEnter").val();
+                var Sessionemail = document.getElementById('<%= CurrentUserMail.ClientID %>').innerText;
+
+                if (currentemail == Sessionemail) {
+                     AlertMessage('success', 'Email Matched', true);
+                     return true;
+                 } else {
+                     AlertMessage('error', 'Incorrect Registered Email', true);
+                     return false;
+                 }
+             });
 
         });
 

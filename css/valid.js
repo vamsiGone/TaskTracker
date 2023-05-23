@@ -90,27 +90,21 @@ function Match() {
     var lcase = new RegExp("[a-z]+");
     var num = new RegExp("[0-9]+");
 
+    var Email = $("#MainContent_txtEmail").val();
     var password = $("#MainContent_txtPassword").val();
 
+    if (Email == "" && password == "") {
+        AlertMessage('error', 'All Fields are Mandatory', true);
+        return false;
+    }
     if (!(password.length >= 8 && ucase.test(password) && lcase.test(password) && num.test(password))) {
-
-        AlertMessage('error', 'Check Password policy, try again', true);
-       
+        AlertMessage('error', 'Check Password policy, try again', true);       
         return false;
     }
 }
 
-//function currentPwd() {
 
-//    var currentpwd = $("#Password").val();
-//    var SessionPwd = "@currentUser";
 
-//    if (currentpwd == SessionPwd) {
-//        AlertMessage('success', 'Password Matched', true);
-//    } else {
-//        AlertMessage('error', 'Incorrect Password', true);
-//    } 
-//}
 
 
 

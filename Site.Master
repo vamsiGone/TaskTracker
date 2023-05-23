@@ -93,13 +93,12 @@
 
 
 
-
-        <%--profile modal start--%>
+ <%--profile modal start--%>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" id="profileModal">
                     <div class="modal-header">
-                          <div style="background:white; float:right;">
+                        <div style="background: white; float: right;">
                             <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal">X</button>
 
                         </div>
@@ -107,7 +106,7 @@
                     </div>
                     <div class="modal-body">
                         <center>
-                            <img src="<%=PhotoUrl %>" name="aboutme" width="140" height="140" border="0" class="img-circle" />
+                            <img src="../<%=PhotoUrl %>" name="aboutme" width="140" height="140" border="0" class="img-circle" />
 
                             <h3 class="media-heading" style="color: #00FF00;"><%=Name %></h3>
                             <br />
@@ -141,34 +140,42 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content" id="PwdContent">
                     <div class="modal-header">
-                        <div style="background:white; float:right;">
+                        <div style="background: white; float: right;">
                             <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal">X</button>
 
                         </div>
-                        <h4 class="modal-title" id="PwdLabel" style="color:greenyellow;">Password Change</h4>
+                        <h4 class="modal-title" id="PwdLabel" style="color: greenyellow;">Password Change</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-sm-7" style="margin-left:130px;">
-                                <asp:TextBox ID="Password" class="input-lg form-control" TextMode="Password" runat="server" onkeyUp="currentPwd();" placeholder="Current Password"></asp:TextBox><br />
-                                <asp:TextBox ID="password1"  class="input-lg form-control" TextMode="Password" runat="server" onkeyUp="CheckPassword();" placeholder="New Password" Style="display: inline-block;"></asp:TextBox>
-                                 <span style="color: white"><i class="bi bi-info-circle" data-toggle="modal" data-target="#Policy" title="click"></i></span>
-                               
+                            <div class="col-sm-7" style="margin-left: 130px;">
+                                
+                                <asp:TextBox ID="Password" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" runat="server" placeholder="Current Password"></asp:TextBox>
+
+                                <asp:LinkButton ID="LinkButton1" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#EmailEntry" ForeColor="YellowGreen">forgot password?</asp:LinkButton><br />
+                                <br />
+                                <asp:TextBox ID="password1" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" runat="server" onkeyUp="CheckPassword();" placeholder="New Password" Style="display: inline-block;"></asp:TextBox>
+                                <span style="color: white"><i class="bi bi-info-circle" data-toggle="modal" data-target="#Policy" title="click"></i></span>
+
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <p style="color:white;"><span id="8char" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>8 Characters Long<br>
-                                        <span id="ucase" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Uppercase Letter</p>
+                                        <p style="color: white;">
+                                            <span id="8char" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>8 Characters Long<br>
+                                            <span id="ucase" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Uppercase Letter
+                                        </p>
                                     </div>
                                     <div class="col-sm-6">
-                                        <p style="color:white;"><span id="lcase" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Lowercase Letter<br>
-                                        <span id="num" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Number</p>
+                                        <p style="color: white;">
+                                            <span id="lcase" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Lowercase Letter<br>
+                                            <span id="num" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>One Number
+                                        </p>
                                     </div>
                                 </div>
-                                <asp:TextBox ID="password2" runat="server" class="input-lg form-control" TextMode="Password" onkeyUp="CheckPassword();" placeholder="Repeat Password"></asp:TextBox>
+                                <asp:TextBox ID="password2" runat="server" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" onkeyUp="CheckPassword();" placeholder="Repeat Password"></asp:TextBox>
 
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <p style="color:white;"><span id="pwmatch" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>Passwords Match</p>
+                                        <p style="color: white;"><span id="pwmatch" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>Passwords Match</p>
                                     </div>
                                 </div>
                             </div>
@@ -188,35 +195,61 @@
 
 
 
-                     <%-- password policy modal start--%>
-                        <div class="modal" id="Policy" tabindex="-1" role="dialog">
-                            <div class="modal-dialog modal-dialog-centered" >
-                                <div class="modal-content" id="PwdPolicy">
-                                    <div class="modal-header">
-                                         <div style="background: white; float: right;">
-                                            <button type="button" aria-label="Close" data-dismiss="modal">X</button>
+        <%-- password policy modal start--%>
+        <div class="modal" id="Policy" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" id="PwdPolicy">
+                    <div class="modal-header">
+                        <div style="background: white; float: right;">
+                            <button type="button" aria-label="Close" data-dismiss="modal">X</button>
 
-                                        </div>
-                                        <h4 class="modal-title" style="color: #00FF00;">Password Policy</h4>
-                                       
-                                    </div>
-                                    <div class="modal-body">
-                                       
-                                        <ul>
-                                            <li style="color: white;">A Password must contain 8 Characters </li>
-                                            <li style="color: white;">A Password must contain 1 UpperCase(A) letter</li>
-                                            <li style="color: white;">A Password must contain 1 LowerCase(a) letter</li>
-                                            <li style="color: white;">A password must contain 1 Number</li>
-                                            <li style="color: white;">A password must contain 1 Special Character</li>
-
-                                        </ul>
-                                    </div>
-                                   
-                                </div>
-                            </div>
                         </div>
-                        <%--password Policy modal ends--%>
+                        <h4 class="modal-title" style="color: #00FF00;">Password Policy</h4>
 
+                    </div>
+                    <div class="modal-body">
+
+                        <ul>
+                            <li style="color: white;">A Password must contain 8 Characters </li>
+                            <li style="color: white;">A Password must contain 1 UpperCase(A) letter</li>
+                            <li style="color: white;">A Password must contain 1 LowerCase(a) letter</li>
+                            <li style="color: white;">A password must contain 1 Number</li>
+                            <li style="color: white;">A password must contain 1 Special Character</li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <%--password Policy modal ends--%>
+
+       <%-- forgot password starts--%>
+        <div class="modal" id="EmailEntry" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" id="EmailEntryy">
+                    <div class="modal-header">
+                        <div style="background: white; float: right;">
+                            <button type="button" aria-label="Close" data-dismiss="modal">X</button>
+
+                        </div>
+                        <h4 class="modal-title" style="color: #00FF00;">Email</h4>
+
+                    </div>
+                    <div class="modal-body">
+                        <p style="color:white">Enter the Registered Email with this account</p><br />
+                        <asp:TextBox ID="EmailEnter" Textmode="Email" AutoCompleteType="Disabled" runat="server" class="input-lg form-control" Placeholder="Registered Email"></asp:TextBox><br />
+                        <asp:Button ID="ForgotMail" class="btn btn-danger" runat="server" Text="Send" onclick="ForgotMail_Click"/>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+       <%-- forgot password ends--%>
+
+        <asp:Label ID="CurrentPwd" runat="server" Visible="true"></asp:Label>
+        <asp:Label ID="CurrentUserMail" runat="server" Visible="true"></asp:Label>
     </form>
     <%--  tooltip enable script--%>
     <script>
@@ -234,10 +267,40 @@
 
                 });
             }
+
+            $("#Password").change(function () {
+                var currentpwd = $("#Password").val();
+                var SessionPwd = document.getElementById('<%= CurrentPwd.ClientID %>').innerText;
+
+                if (currentpwd == SessionPwd) {
+                    AlertMessage('success', 'Password Matched', true);
+                    return true;
+                } else {
+                    AlertMessage('error', 'Incorrect Password', true);
+                    return false;
+                }
+            });
+
+            $("#EmailEnter").change(function () {
+                var currentemail = $("#EmailEnter").val();
+                var Sessionemail = document.getElementById('<%= CurrentUserMail.ClientID %>').innerText;
+
+                  if (currentemail == Sessionemail) {
+                      AlertMessage('success', 'Email Matched', true);
+                      return true;
+                  } else {
+                      AlertMessage('error', 'Incorrect Registered Email', true);
+                      return false;
+                  }
+              });
+
         });
+
+
 
     </script>
 
+       
 
 
 </body>
