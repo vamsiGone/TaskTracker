@@ -8,8 +8,9 @@ using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Net;
-using System.Net.Mail;
+using System.Configuration;
+
+
 
 namespace AdminControl
 {
@@ -96,28 +97,45 @@ namespace AdminControl
         {
             try
             {
-                // Set up the SMTP client and email message
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                smtpClient.Port = 587; // Use the appropriate port for your SMTP server
-                smtpClient.Credentials = new NetworkCredential("vamsigone00@gmail.com", "v@1a2ms34i");
-
+                // MailMessage message = new MailMessage();
+                // SmtpClient smtp = new SmtpClient();
+                // message.From = new MailAddress("vamsigone00@gmail.com");
+                // message.To.Add(new MailAddress("vamsigone001@gmail.com"));
+                // message.Subject = "Password Change Requested";
+                //// message.IsBodyHtml = true; //to make message body as html
+                //message.Body = $"Dear {currentUser},\n\n"
+                //+ "You had Request for Password change.\n\n"
+                //+ "Your Password: " + pwd + "\n\n"
+                //+ "Please keep this information secure and do not share it with anyone.\n\n"
+                //+ "Thank you!\n\n"
+                //+ "Best regards,\n"
+                //+ "Task Tracker Team";
+                // smtp.Port = 587;
+                // smtp.Host = "smtp.gmail.com"; //for gmail host
+                // smtp.EnableSsl = true;
+                // smtp.UseDefaultCredentials = false;
+                // smtp.Credentials = new NetworkCredential("vamsigone00@gmail.com", "V@1a2ms34i##");
+                // smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                // smtp.Send(message);
                 MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("vamsigone00@gmail.com");
-                mailMessage.To.Add("vamsigone001@gmail.com");
-                mailMessage.Subject = "Password Change Requested";
-                mailMessage.Body =  $"Dear {currentUser},\n\n"
-                + "You had Request for Password change.\n\n"
-                + "Your Password: " + pwd + "\n\n"
-                + "Please keep this information secure and do not share it with anyone.\n\n"
-                + "Thank you!\n\n"
-                + "Best regards,\n"
-                + "Task Tracker Team";
-
-                // Attachments (optional)
-                // mailMessage.Attachments.Add(new Attachment("file_path"));
-
-                // Send the email
-                smtpClient.Send(mailMessage);
+                mailMessage.From = new MailAddress(ConfigurationManager.AppSettings["LocalEmailAddress"]);
+                mailMessage.Subject = "hello";
+                mailMessage.Body = "hello";
+                mailMessage.IsBodyHtml = true;
+                mailMessage.To.Add(new MailAddress("vamsigone001@gmail.com"));
+                //mailMessage.CC.Add(new MailAddress(CCID));
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = ConfigurationManager.AppSettings["Host"];
+                smtp.EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"]);
+                System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential();
+                NetworkCred.UserName = ConfigurationManager.AppSettings["LocalEmailAddress"];
+                NetworkCred.Password = ConfigurationManager.AppSettings["Password"];
+                smtp.UseDefaultCredentials = true;
+                smtp.Credentials = NetworkCred;
+                smtp.Port = int.Parse(ConfigurationManager.AppSettings["Port"]);
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(mailMessage);
+              
 
                 // Display success message or perform other actions
                 ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Email Sent Successfully!')});", true);
