@@ -28,7 +28,7 @@
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
-
+                 <%--   admin site master--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="bootstrap" />
@@ -264,19 +264,6 @@
                 });
             }
 
-            $("#Password").change(function () {
-                var currentpwd = $("#Password").val();
-                var SessionPwd = '<%= pwd%>' ;
-                if (currentpwd == SessionPwd) {
-                    AlertMessage('success', 'Password Matched', true);
-                    return true;
-                } else {
-                    AlertMessage('error', 'Incorrect Password', true);
-                    return false;
-                }
-            });
-            
-
             $("#EmailEnter").change(function () {
                 var currentemail = $("#EmailEnter").val();
                 var Sessionemail = '<%=currentUser%>';
@@ -289,9 +276,9 @@
                  }
             });
 
-            $("Password").keyup(function () {
+            $("#Password").keyup(function () {
                 var currentpwd = $("#Password").val();
-                var SessionPwd = <%=pwd%>;
+                var SessionPwd = '<%=pwd%>';
                 if (currentpwd == SessionPwd) {
                     $("#current").removeClass("glyphicon-remove");
                     $("#current").addClass("glyphicon-ok");
@@ -306,7 +293,7 @@
 
         });
 
-
+         <%--   admin site master--%>
 
     </script>
 
