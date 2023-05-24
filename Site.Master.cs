@@ -78,7 +78,7 @@ namespace TaskTracker
                             string ToMail = currentUser;
                             string Subject = "Change Password";
                             string Body = "<h2>Dear " + Name + ",</h2><br/><br/><p>You had Requested for password change.<br/> If not please make sure that your " +
-                                 "account was safe.</p><br/><br/><h3>Your New Password: " + PassText + "<br/><br/><p>Thanks & Regards,<br/><br/>Task Tracker Team.</p>";
+                                 "account was safe.</p><br/><br/><h3>Your New Password: " + PassText + "</h3><br/><br/><p>Thanks & Regards,<br/><br/>Task Tracker Team.</p>";
 
                             bool flag = SendMail(ToMail, Subject, Body);
                             if (flag)
@@ -145,7 +145,7 @@ namespace TaskTracker
             string ToMail = EmailEnter.Text.Trim();
             string Subject = "Forgot Password";
             string Body = "<h2>Dear " + Name + ",</h2><br/><br/><p>You had Requested for forgot password.<br/> If not please make sure that your " +
-                 "account was safe.</p><br/><br/><h3>Your Current Password: " + pwd + "<br/><br/><p>Thanks & Regards,<br/><br/>Task Tracker Team.</p>";
+                 "account was safe.</p><br/><br/><h3>Your Current Password: " + pwd + "</h3><br/><br/><p>Thanks & Regards,<br/><br/>Task Tracker Team.</p>";
             
             bool flag = SendMail(ToMail, Subject, Body);
             if(flag)
