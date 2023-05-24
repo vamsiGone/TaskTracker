@@ -108,7 +108,7 @@
                     </div>
                     <div class="modal-body">
                         <center>
-                            <img src="../<%=PhotoUrl %>" name="aboutme" width="140" height="140" border="0" class="img-circle" />
+                            <img src="../<%=PhotoUrl %>" name="profile" width="140" height="140" border="0" class="img-circle" />
 
                             <h3 class="media-heading" style="color: #00FF00;"><%=Name %></h3>
                             <br />
