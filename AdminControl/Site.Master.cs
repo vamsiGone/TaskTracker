@@ -38,8 +38,7 @@ namespace AdminControl
             TasksCompleted = Session["TasksCompleted"] as string;
             pwd = Session["pwd"] as string;
 
-            CurrentPwd.Text = pwd;
-            CurrentUserMail.Text = currentUser;
+       
             if (currentUser == null || currentUser == String.Empty || currentUser == "")
             {
                 Response.Redirect("~/Login.aspx");

@@ -22,7 +22,7 @@ namespace TaskTracker
         public string Bio = "";
         public string TasksCreated = "0";
         public string TasksCompleted = "0";
-        public string pwd = "";
+        protected string pwd = "";
 
        
         protected void Page_Load(object sender, EventArgs e)
@@ -35,9 +35,7 @@ namespace TaskTracker
             TasksCompleted = Session["TasksCompleted"] as string;
             pwd = Session["pwd"] as string;
 
-            CurrentPwd.Text = pwd;
-            CurrentUserMail.Text = currentUser;
-
+      
         }
 
         protected void Logout_Click(object sender, EventArgs e)

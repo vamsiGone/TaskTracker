@@ -17,8 +17,7 @@ namespace DAL
         public LoginDAO()
         {
             objSqlConnection = null;
-            objSqlConnection = new SqlConnection(System.Configuration.ConfigurationSettings.AppSettings["SQLConnectionString"]);
-
+            objSqlConnection = new SqlConnection(ConfigurationSettings.AppSettings["SQLConnectionString"].ToString());
         }
 
         public DataSet SaveRegister(string status, string Name, string Email, string Password)

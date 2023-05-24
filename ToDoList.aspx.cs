@@ -28,7 +28,7 @@ namespace TaskTracker
             {
                 ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('info','Please Login First')});", false);
 
-                Response.Redirect("login.aspx");
+                Response.Redirect("Login.aspx");
             }
 
 

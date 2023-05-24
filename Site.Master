@@ -150,7 +150,8 @@
                         <div class="row">
                             <div class="col-sm-7" style="margin-left: 130px;">
                                 
-                                <asp:TextBox ID="Password" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" runat="server" placeholder="Current Password"></asp:TextBox>
+                                <asp:TextBox ID="Password" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" runat="server" placeholder="Current Password" Style="display: inline-block;"></asp:TextBox>
+                                <span id="current" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span><br />
 
                                 <asp:LinkButton ID="LinkButton1" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#EmailEntry" ForeColor="YellowGreen">forgot password?</asp:LinkButton><br />
                                 <br />
@@ -247,12 +248,12 @@
         </div>
 
        <%-- forgot password ends--%>
-
-        <asp:Label ID="CurrentPwd" runat="server" Visible="true"></asp:Label>
-        <asp:Label ID="CurrentUserMail" runat="server" Visible="true"></asp:Label>
     </form>
     <%--  tooltip enable script--%>
     <script>
+
+       /* Tasktracker site master*/
+
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
 
@@ -270,8 +271,7 @@
 
             $("#Password").change(function () {
                 var currentpwd = $("#Password").val();
-                var SessionPwd = document.getElementById('<%= CurrentPwd.ClientID %>').innerText;
-
+                var SessionPwd = '<%=pwd%>';
                 if (currentpwd == SessionPwd) {
                     AlertMessage('success', 'Password Matched', true);
                     return true;
@@ -283,8 +283,7 @@
 
             $("#EmailEnter").change(function () {
                 var currentemail = $("#EmailEnter").val();
-                var Sessionemail = document.getElementById('<%= CurrentUserMail.ClientID %>').innerText;
-
+                var Sessionemail = '<%=currentUser%>';
                   if (currentemail == Sessionemail) {
                       AlertMessage('success', 'Email Matched', true);
                       return true;
@@ -292,7 +291,23 @@
                       AlertMessage('error', 'Incorrect Registered Email', true);
                       return false;
                   }
-              });
+            });
+
+            $("Password").keyup(function () {
+                var currentpwd = $("#Password").val();
+                var SessionPwd = <%=pwd%>;
+                if (currentpwd == SessionPwd) {
+                    $("#current").removeClass("glyphicon-remove");
+                    $("#current").addClass("glyphicon-ok");
+                    $("#current").css("color", "#00A41E");
+                } else {
+
+                    $("#current").removeClass("glyphicon-ok");
+                    $("#current").addClass("glyphicon-remove");
+                    $("#current").css("color", "#FF0004");
+                }
+            });
+
 
         });
 
