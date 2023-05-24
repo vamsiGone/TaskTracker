@@ -159,5 +159,15 @@ namespace AdminControl
 
             }
         }
+
+        protected void RemovePic_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void UploadPic_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

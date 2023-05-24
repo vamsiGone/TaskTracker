@@ -28,7 +28,7 @@
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
-                 <%--   admin site master--%>
+                <%--   admin site master--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="bootstrap" />
@@ -86,9 +86,6 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
 
-
-
-
         <%--profile modal start--%>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -102,13 +99,36 @@
                     </div>
                     <div class="modal-body">
                         <center>
-                            <img src="../<%=PhotoUrl %>" name="aboutme" width="140" height="140" border="0" class="img-circle" style="margin-left: 48px;" /><span><i class="bi bi-pencil-square" id="editimage"></i></span>
+                            <div class="row">
+                                <div class="col-sm-7">
+
+                                    <img src="../<%=PhotoUrl %>" alt="img" name="aboutme" width="140" height="140" border="0" class="img-circle" style="display: inline-block; float:right" />
+                                    <span class="icon-container dropdown-toggle" onclick="toggleDropdown();">
+                                        <i class="bi bi-pencil-square" id="editimage"></i>
+                                    </span>
+                                </div>
+                                <div class="col-sm-5">
+                                    <%--edit menu divstart--%><br />
+                                    <div id="DropProfMenu" >
+                                    
+                                                <asp:LinkButton ID="UploadPic" CssClass="dropdown-item" data-toggle="modal" data-target="#UploadPicModal" runat="server" ForeColor="white" OnClick="UploadPic_Click">UploadPic</asp:LinkButton>
+
+                                           <hr />
+                                           
+                                                <asp:LinkButton ID="RemovePic" class="dropdown-item" runat="server" ForeColor="white" OnClick="RemovePic_Click">RemovePic</asp:LinkButton>
+
+                                        <%--  edit menu ends--%>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <h3 class="media-heading" style="color: #00FF00;"><%=Name %></h3>
                             <br />
                             <p style="color: white;"><b style="color: #00FF00;">Email:</b> <%=currentUser %> </p>
                             <br />
-                            <asp:LinkButton ID="chpwd" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#Pwdmodal" ForeColor="white">Change Password</asp:LinkButton>
+                            <asp:LinkButton ID="chpwd" runat="server" CssClass="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#Pwdmodal" ForeColor="white">Change Password</asp:LinkButton>
+
 
                         </center>
                         <hr>
@@ -131,7 +151,7 @@
         </div>
         <%-- profile modal end--%>
 
-   <%--Password change modal start--%>
+        <%--Password change modal start--%>
         <div class="modal fade" id="Pwdmodal" tabindex="-1" role="dialog" aria-labelledby="PwdLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" id="PwdContent">
@@ -145,9 +165,10 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-sm-7" style="margin-left: 130px;">
-                                
+
                                 <asp:TextBox ID="Password" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" runat="server" placeholder="Current Password" Style="display: inline-block;"></asp:TextBox>
-                                 <span id="current" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span><br />
+                                <span id="current" class="glyphicon glyphicon-remove" style="color: #FF0004;"></span>
+                                <br />
                                 <asp:LinkButton ID="LinkButton1" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#EmailEntry" ForeColor="YellowGreen">forgot password?</asp:LinkButton><br />
                                 <br />
                                 <asp:TextBox ID="password1" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" runat="server" onkeyUp="CheckPassword();" placeholder="New Password" Style="display: inline-block;"></asp:TextBox>
@@ -220,7 +241,7 @@
         </div>
         <%--password Policy modal ends--%>
 
-       <%-- forgot password starts--%>
+        <%-- forgot password starts--%>
         <div class="modal" id="EmailEntry" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content" id="EmailEntryy">
@@ -233,24 +254,30 @@
 
                     </div>
                     <div class="modal-body">
-                        <p style="color:white">Enter the Registered Email with this account</p><br />
-                        <asp:TextBox ID="EmailEnter" Textmode="Email" AutoCompleteType="Disabled" runat="server" class="input-lg form-control" Placeholder="Registered Email"></asp:TextBox><br />
-                        <asp:Button ID="ForgotMail" class="btn btn-danger" runat="server" Text="Send" onclick="ForgotMail_Click"/>
+                        <p style="color: white">Enter the Registered Email with this account</p>
+                        <br />
+                        <asp:TextBox ID="EmailEnter" TextMode="Email" AutoCompleteType="Disabled" runat="server" class="input-lg form-control" Placeholder="Registered Email"></asp:TextBox><br />
+                        <asp:Button ID="ForgotMail" class="btn btn-danger" runat="server" Text="Send" OnClick="ForgotMail_Click" />
                     </div>
 
                 </div>
             </div>
         </div>
 
-       <%-- forgot password ends--%>
-
+        <%-- forgot password ends--%>
     </form>
     <%--  tooltip enable script--%>
 
- <%--   admin site master--%>
+    <%--   admin site master--%>
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
+
+            $(function () {
+                $('.dropdown-toggle').dropdown();
+            });
+
+
 
             var SessionUser = '<%=currentUser%>';
             if (SessionUser == null || SessionUser == "") {
@@ -268,12 +295,12 @@
                 var currentemail = $("#EmailEnter").val();
                 var Sessionemail = '<%=currentUser%>';
                 if (currentemail == Sessionemail) {
-                     AlertMessage('success', 'Email Matched', true);
-                     return true;
-                 } else {
-                     AlertMessage('error', 'Incorrect Registered Email', true);
-                     return false;
-                 }
+                    AlertMessage('success', 'Email Matched', true);
+                    return true;
+                } else {
+                    AlertMessage('error', 'Incorrect Registered Email', true);
+                    return false;
+                }
             });
 
             $("#Password").keyup(function () {

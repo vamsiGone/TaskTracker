@@ -90,6 +90,15 @@ function Match() {
     }
 }
 
+function toggleDropdown() {
+    var dropdownMenu = document.getElementById("DropProfMenu");
+    if (dropdownMenu.style.display === "block") {
+        dropdownMenu.style.display = "none";
+    } else {
+        dropdownMenu.style.display = "block";
+    }
+}
+
 
 
 
