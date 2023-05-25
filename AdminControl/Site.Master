@@ -52,7 +52,7 @@
                     <asp:ImageButton ID="ProfilePic" class="img-circle btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ImageUrl="~/Images/user.png" runat="server" Style="position: relative; top: 4px; float: right; right: 10px; height: 50px; background-blend-mode: color-burn" />
                     <ul class="dropdown-menu" style="background-color: transparent; border: 1px solid white">
                         <li>
-                            <asp:LinkButton ID="ProfileView" CssClass="dropdown-item" data-toggle="modal" data-target="#myModal" runat="server" ForeColor="white">Profile</asp:LinkButton>
+                            <a id="ProfileView" href="Profile.aspx" style="color:white;text-decoration:none">Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -77,6 +77,7 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/Register">Register</a></li>
                         <li><a runat="server" href="~/login">Login</a></li>
+                       
                     </ul>
                 </div>
             </div>
@@ -85,71 +86,6 @@
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
-
-        <%--profile modal start--%>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" id="profileModal">
-                    <div class="modal-header">
-                        <div style="background: white; float: right;">
-                            <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal">X</button>
-
-                        </div>
-                        <h4 class="modal-title" id="myModalLabel" style="color: #00FF00;">Profile</h4>
-                    </div>
-                    <div class="modal-body">
-                        <center>
-                            <div class="row">
-                                <div class="col-sm-7">
-
-                                    <img src="../<%=PhotoUrl %>" alt="img" name="aboutme" width="140" height="140" border="0" class="img-circle" style="display: inline-block; float:right" />
-                                    <span class="icon-container dropdown-toggle" onclick="toggleDropdown();">
-                                        <i class="bi bi-pencil-square" id="editimage"></i>
-                                    </span>
-                                </div>
-                                <div class="col-sm-5">
-                                    <%--edit menu divstart--%><br />
-                                    <div id="DropProfMenu" >
-                                    
-                                                <asp:LinkButton ID="UploadPic" CssClass="dropdown-item" data-toggle="modal" data-target="#UploadPicModal" runat="server" ForeColor="white" OnClick="UploadPic_Click">UploadPic</asp:LinkButton>
-
-                                           <hr />
-                                           
-                                                <asp:LinkButton ID="RemovePic" class="dropdown-item" runat="server" ForeColor="white" OnClick="RemovePic_Click">RemovePic</asp:LinkButton>
-
-                                        <%--  edit menu ends--%>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <h3 class="media-heading" style="color: #00FF00;"><%=Name %></h3>
-                            <br />
-                            <p style="color: white;"><b style="color: #00FF00;">Email:</b> <%=currentUser %> </p>
-                            <br />
-                            <asp:LinkButton ID="chpwd" runat="server" CssClass="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#Pwdmodal" ForeColor="white">Change Password</asp:LinkButton>
-
-
-                        </center>
-                        <hr>
-                        <center>
-                            <p class="text-left" style="color: white;">
-                                <strong style="color: #00FF00;">Bio: </strong>
-                                <br>
-                                <%=Bio %>
-                            </p>
-                            <br>
-                        </center>
-                    </div>
-                    <div class="modal-footer">
-                        <center>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                        </center>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%-- profile modal end--%>
 
         <%--Password change modal start--%>
         <div class="modal fade" id="Pwdmodal" tabindex="-1" role="dialog" aria-labelledby="PwdLabel" aria-hidden="true">
@@ -272,14 +208,8 @@
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
-
-            $(function () {
-                $('.dropdown-toggle').dropdown();
-            });
-
-
-
-            var SessionUser = '<%=currentUser%>';
+         
+           <%-- var SessionUser = '<%=currentUser%>';
             if (SessionUser == null || SessionUser == "") {
                 $('#ProfileView').click(function () {
                     AlertMessage('error', 'Sign in First, Try Again', true);
@@ -289,7 +219,7 @@
                     return false;
 
                 });
-            }
+            }--%>
 
             $("#EmailEnter").change(function () {
                 var currentemail = $("#EmailEnter").val();

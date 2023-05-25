@@ -24,13 +24,13 @@ namespace TaskTracker
         protected global::System.Web.UI.WebControls.ImageButton ProfilePic;
 
         /// <summary>
-        /// ProfileView control.
+        /// chpwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ProfileView;
+        protected global::System.Web.UI.WebControls.LinkButton chpwd;
 
         /// <summary>
         /// Logout control.
@@ -49,15 +49,6 @@ namespace TaskTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-
-        /// <summary>
-        /// chpwd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton chpwd;
 
         /// <summary>
         /// Password control.
