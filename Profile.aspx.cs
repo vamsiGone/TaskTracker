@@ -11,7 +11,12 @@ namespace TaskTracker
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        protected void ChangePic_Click(object sender, EventArgs e)
+        {
+            FileUpload1.Visible = true;
         }
     }
 }

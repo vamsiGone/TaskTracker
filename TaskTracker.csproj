@@ -145,6 +145,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="GridList.aspx" />
     <Content Include="Images\Background.jpg" />
+    <Content Include="Images\bg-pattern-card.svg" />
     <Content Include="Images\delete.png" />
     <Content Include="Images\edit.png" />
     <Content Include="Images\user.png" />

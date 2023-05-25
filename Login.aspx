@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lblPassword" class="label" runat="server" AssociatedControlID="txtPassword">Password:</asp:Label><br />
                                 <asp:TextBox ID="txtPassword" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password" Style="display: inline-block;"></asp:TextBox>&nbsp;&nbsp;
-                                <span style="color: white"><i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#Policy" title="click"></i></span>
+                                <span style="color: white;cursor :pointer;"><i class="bi bi-info-circle" data-toggle="modal" data-target="#Policy"></i></span>
                             </div>
                             <br />
                             <div class="form-group">

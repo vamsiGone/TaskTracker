@@ -14,6 +14,7 @@
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" href="css/master.css" />
@@ -55,7 +56,8 @@
                     <asp:ImageButton ID="ProfilePic" class="img-circle btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ImageUrl="~/Images/user.png" runat="server" Style="position: relative; top: 4px; float: right; right: 10px; height: 50px; background-blend-mode: color-burn" />
                     <ul class="dropdown-menu" style="background-color: transparent; border: 1px solid white">
                         <li>
-                            <a id="ProfileView" href="Profile.aspx" style="color: white; text-decoration: none">Profile</a>                        </li>
+                            <a id="ProfileView" href="Profile.aspx" style="color: white; text-decoration: none">Profile</a>  
+                        </li>
                         <li class="divider"></li>
                         <li>
                             <asp:LinkButton ID="chpwd" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#Pwdmodal" ForeColor="white">Change Password</asp:LinkButton>
@@ -83,7 +85,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/Register">Register</a></li>
-                        <li><a runat="server" href="~/login">Login</a></li>
+                        <li><a runat="server" href="~/Login">Login</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                         <li><a runat="server" href="~/ToDoList">ToDoList</a></li>
@@ -96,57 +98,13 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
 
-
-
-        <%--        profile modal start
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" id="profileModal">
-                    <div class="modal-header">
-                        <div style="background: white; float: right;">
-                            <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal">X</button>
-
-                        </div>
-                        <h4 class="modal-title" id="myModalLabel" style="color: #00FF00;">Profile</h4>
-                    </div>
-                    <div class="modal-body">
-                        <center>
-                            <img src="../<%=PhotoUrl %>" name="profile" width="140" height="140" border="0" class="img-circle" style="margin-left: 48px;" /><span><i class="bi bi-pencil-square" id="editimage"></i></span>
-
-                            <h3 class="media-heading" style="color: #00FF00;"><%=Name %></h3>
-                            <br />
-                            <p style="color: white;"><b style="color: #00FF00;">Email:</b> <%=currentUser %> </p>
-                            <br />
-                            <asp:LinkButton ID="chpwd" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#Pwdmodal" ForeColor="white">Change Password</asp:LinkButton>
-
-                        </center>
-                        <hr>
-                        <center>
-                            <p class="text-left" style="color: white;">
-                                <strong style="color: #00FF00;">Bio: </strong>
-                                <br>
-                                <%=Bio %>
-                            </p>
-                            <br>
-                        </center>
-                    </div>
-                    <div class="modal-footer">
-                        <center>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                        </center>
-                    </div>
-                </div>
-            </div>
-        </div>
-       profile modal end--%>
-
         <%--Password change modal start--%>
         <div class="modal fade" id="Pwdmodal" tabindex="-1" role="dialog" aria-labelledby="PwdLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" id="PwdContent">
                     <div class="modal-header">
                         <div style="background: white; float: right;">
-                            <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal">X</button>
+                            <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal" style="width: 20px;">X</button>
 
                         </div>
                         <h4 class="modal-title" id="PwdLabel" style="color: greenyellow;">Password Change</h4>
@@ -162,7 +120,7 @@
                                 <asp:LinkButton ID="LinkButton1" runat="server" data-dismiss="modal" data-toggle="modal" data-target="#EmailEntry" ForeColor="YellowGreen">forgot password?</asp:LinkButton><br />
                                 <br />
                                 <asp:TextBox ID="password1" class="input-lg form-control" AutoCompleteType="Disabled" TextMode="Password" runat="server" onkeyUp="CheckPassword();" placeholder="New Password" Style="display: inline-block;"></asp:TextBox>
-                                <span style="color: white"><i class="bi bi-info-circle" data-toggle="modal" data-target="#Policy" title="click"></i></span>
+                                <span style="color: white; cursor :pointer;"><i class="bi bi-info-circle" data-toggle="modal" data-target="#Policy"></i></span>
 
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -208,7 +166,7 @@
                 <div class="modal-content" id="PwdPolicy">
                     <div class="modal-header">
                         <div style="background: white; float: right;">
-                            <button type="button" aria-label="Close" data-dismiss="modal">X</button>
+                            <button type="button" aria-label="Close" data-dismiss="modal" style="width: 20px;">X</button>
 
                         </div>
                         <h4 class="modal-title" style="color: #00FF00;">Password Policy</h4>
@@ -237,7 +195,7 @@
                 <div class="modal-content" id="EmailEntryy">
                     <div class="modal-header">
                         <div style="background: white; float: right;">
-                            <button type="button" aria-label="Close" data-dismiss="modal">X</button>
+                            <button type="button" aria-label="Close" data-dismiss="modal" style="width: 20px;">X</button>
 
                         </div>
                         <h4 class="modal-title" style="color: #00FF00;">Email</h4>
@@ -264,7 +222,7 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
 
-          <%--  var SessionUser = '<%=currentUser%>';
+       var SessionUser = '<%=currentUser%>';
             if (SessionUser == null || SessionUser == "") {
                 $('#ProfileView').click(function () {
                     AlertMessage('error', 'Sign in First, Try Again', true);
@@ -274,7 +232,15 @@
                     return false;
 
                 });
-            }--%>
+                $('#chpwd').click(function () {
+                    AlertMessage('error', 'Sign in First, Try Again', true);
+                    setTimeout(function () {
+                        location.reload(true);
+                    }, 1500);
+                    return false;
+
+                });
+            }
 
             $("#EmailEnter").change(function () {
                 var currentemail = $("#EmailEnter").val();
