@@ -235,13 +235,33 @@
                             <br />
                             <div id="Uploadfile">
                                   <asp:Panel ID="frmConfirmation"  runat="server">
-                                <form id="Form1" method="post" enctype="multipart/form-data" action="Profile.aspx">
-                                    Image file to upload to the server:
-                                    <input id="oFile" type="file" runat="server" name="oFile">
-                                    <asp:Button ID="btnUpload" type="submit" Text="Upload"  enableEventValidation="true" runat="server"></asp:Button>
-                                  
-                                        <asp:Label ID="lblUploadResult" Visible="false" runat="server"></asp:Label>
-                                 </form>
+                              <div class="form-group">
+                                                <div class="imageupload">
+                                                  <div class="file-tab">
+                                                    <label class="btn btn-default btn-file">
+                                                      <span>Browse</span>
+                                                      <input id="File1" runat="server" type="file" name="image-file" />
+                                                    </label>
+                                                    <button type="button" class="btn btn-danger">
+                                                      Remove
+                                                    </button>
+                                                  </div>
+                                                  <div class="url-tab panel-body">
+                                                    <div class="input-group">
+                                                      <input type="text" class="form-control hasclear" placeholder="Image URL" />
+                                                      <div class="input-group-btn">
+                                                        <button type="button" class="btn btn-default">
+                                                          Submit
+                                                        </button>
+                                                      </div>
+                                                    </div>
+                                                    <button type="button" class="btn btn-danger">
+                                                      Remove
+                                                    </button>
+                                                    <input type="hidden" name="image-url" />
+                                                  </div>
+                                                </div>
+                                              </div>
                                     </asp:Panel>
 
                             </div>
