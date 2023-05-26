@@ -222,7 +222,7 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
 
-       var SessionUser = '<%=currentUser%>';
+       <%--var SessionUser = '<%=currentUser%>';
             if (SessionUser == null || SessionUser == "") {
                 $('#ProfileView').click(function () {
                     AlertMessage('error', 'Sign in First, Try Again', true);
@@ -240,7 +240,7 @@
                     return false;
 
                 });
-            }
+            }--%>
 
             $("#EmailEnter").change(function () {
                 var currentemail = $("#EmailEnter").val();

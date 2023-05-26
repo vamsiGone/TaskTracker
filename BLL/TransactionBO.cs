@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +74,20 @@ namespace BLL
             objDataSet = objTransactionDAO.PwdChange(user, pwd);
             return objDataSet;
         }
+        public DataSet ImageUpload(string Path, string user)
+        {
+            DataSet objDataSet;
+            objDataSet = objTransactionDAO.ImageUpload(Path,user);
+            return objDataSet;
+        }
+
+        public DataSet GetImagePath(string user)
+        {
+            DataSet objDataSet;
+            objDataSet = objTransactionDAO.GetImagePath(user);
+            return objDataSet;
+        }
+
 
     }
 }

@@ -41,6 +41,14 @@ namespace TaskTracker
         protected void Logout_Click(object sender, EventArgs e)
         {
             Session["currentUser"] = "";
+            Session["Name"] = "";
+            Session["CurrentUser"] = "";
+            Session["pwd"] = "";
+            Session["Bio"] = "";
+            Session["PhotoUrl"] = "";
+            Session["TasksCreated"] = "";
+            Session["TasksCompleted"] = "";
+            Session["ImageName"] = "";
             Response.Redirect("Login.aspx");
         }
 

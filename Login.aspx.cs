@@ -60,6 +60,7 @@ namespace TaskTracker
                             string PhotoUrl = (ds.Tables[1].Rows[0]["PhotoUrl"].ToString());
                             string TasksCreated = (ds.Tables[1].Rows[0]["TasksCreated"].ToString());
                             string TasksCompleted = (ds.Tables[1].Rows[0]["TasksCompleted"].ToString());
+                            //string ImageUrl = (ds.Tables[1].Rows[0]["ImageUrl"].ToString());
 
 
                             Session["Name"] = Name;
@@ -69,6 +70,7 @@ namespace TaskTracker
                             Session["PhotoUrl"] = PhotoUrl;
                             Session["TasksCreated"] = TasksCreated;
                             Session["TasksCompleted"] = TasksCompleted;
+                            Session["ImageName"] = PhotoUrl;
 
                             txtEmail.Text = String.Empty;
                             txtPassword.Text = String.Empty;

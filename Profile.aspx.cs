@@ -9,72 +9,115 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.IO;
+using System.Configuration;
+using System.Xml.Linq;
+using BLL;
 
 namespace TaskTracker
 {
     public partial class Profile : System.Web.UI.Page
     {
-        protected System.Web.UI.WebControls.Button btnUpload;
-        protected System.Web.UI.WebControls.Label lblUploadResult;
-        protected System.Web.UI.WebControls.Panel frmConfirmation;
-        protected System.Web.UI.HtmlControls.HtmlInputFile oFile;
+        [Obsolete]
+        TransactionBO objTransactionBO = new TransactionBO();
+        public string ImageUrl;
+        public string ImageName;
+        public string Name = "";
+        public string currentUser = "";
+        public string PhotoUrl = "";
+        public string Bio = "";
+        public string TasksCreated = "0";
+        public string TasksCompleted = "0";
+        public string pwd = "";
 
-        private void Page_Load(object sender, System.EventArgs e)
+        protected void Page_Load(object sender, System.EventArgs e)
         {
-            // Put user code to initialize the page here
-        }
-        #region Web Form Designer generated code
-        override protected void OnInit(EventArgs e)
-        {
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            InitializeComponent();
-            base.OnInit(e);
-        }
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
-        }
-        #endregion
+            Name = Session["Name"] as string;
+            currentUser = Session["CurrentUser"] as string;
+            PhotoUrl = Session["PhotoUrl"] as string;
+            Bio = Session["Bio"] as string;
+            TasksCreated = Session["TasksCreated"] as string;
+            TasksCompleted = Session["TasksCompleted"] as string;
+            pwd = Session["pwd"] as string;
 
-        private void btnUpload_Click(object sender, System.EventArgs e)
+            ImageUpdate();
+        }
+
+        [Obsolete]
+        protected void btnUpload_Click(object sender, EventArgs e)
         {
-            string strFileName;
-            string strFilePath;
-            string strFolder;
-            strFolder = Server.MapPath("C:\\Users\\TFSUSER\\source\\repos\\TaskTracker\\Images\\UserImages\\");
-            // Get the name of the file that is posted.
-            strFileName = oFile.PostedFile.FileName;
-            strFileName = Path.GetFileName(strFileName);
-            if (oFile.Value != "")
+            try
             {
-                // Create the directory if it does not exist.
-                if (!Directory.Exists(strFolder))
+                string FileName;
+
+                string ImagePath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadPath"]);
+                string DirPath = Server.MapPath(ImagePath);
+
+                Session["DirPath"] = DirPath;
+
+                FileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
+
+                using (DataSet ds = objTransactionBO.ImageUpload( FileName, Convert.ToString(Session["currentUser"])))
                 {
-                    Directory.CreateDirectory(strFolder);
+                    if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    {
+                        string StrError = (ds.Tables[0].Rows[0]["com"].ToString());
+                        if (StrError == "1")
+                        {
+                            if ((DirPath.Trim() != null) && (DirPath.Trim() != string.Empty))
+                            {
+                                DirectoryInfo ImageFolder = Directory.CreateDirectory(DirPath);
+                                if (!(ImageFolder.Exists))
+                                    ImageFolder.Create();
+                            }
+                            string path = string.Concat(DirPath + "\\" + FileName);
+                           
+                            FileUpload1.PostedFile.SaveAs(path);
+
+
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Image Uploaded Successfully')});", false);
+                            return;
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Image Uploaded Successfully')});", false);
+                            return;
+                        }
+                    }
                 }
-                // Save the uploaded file to the server.
-                strFilePath = strFolder + strFileName;
-                if (File.Exists(strFilePath))
+
+
+
+            }
+
+            catch (Exception ex)
+            {
+                string exceptionMessage = ex.Message;
+                string script = "$(function(){AlertMessage('error', 'Error Uploading Image : " + exceptionMessage + "');});";
+                ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", script, true);
+                return;
+            }
+        }
+
+        protected void ImageUpdate()
+        {
+            
+                if(currentUser != null && currentUser != "")
                 {
-                    lblUploadResult.Text = strFileName + " already exists on the server!";
+                    ImageName = Session["ImageName"] as string;
+                   // FilePath = Session["DirPath"] as string;
+                   ImageUrl = string.Concat("..\\Images\\UserImages\\" + ImageName);
+
                 }
                 else
                 {
-                    oFile.PostedFile.SaveAs(strFilePath);
-                    lblUploadResult.Text = strFileName + " has been successfully uploaded.";
+                    ImageUrl = "..\\Images\\user.png\\";
                 }
-            }
-            else
-            {
-                lblUploadResult.Text = "Click 'Browse' to select the file to upload.";
-            }
-            // Display the result of the upload.
-            frmConfirmation.Visible = true;
+        
+        }
+
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

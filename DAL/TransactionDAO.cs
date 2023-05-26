@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -138,5 +139,31 @@ namespace DAL
             return ds;
         }
 
+        public DataSet ImageUpload(string Path, string user)
+        {
+            DataSet ds = new DataSet();
+            SqlCommand cmd = new SqlCommand("ImageUpload", objSqlConnection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Action", "Insert");
+            cmd.Parameters.AddWithValue("@ImageUrl", Path);
+            cmd.Parameters.AddWithValue("@User", user);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            sda.Fill(ds);
+            return ds;
+        }
+        public DataSet GetImagePath(string user)
+        {
+            DataSet ds = new DataSet();
+            SqlCommand cmd = new SqlCommand("ImageUpload", objSqlConnection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Action", "Select");
+            cmd.Parameters.AddWithValue("@email", user);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            sda.Fill(ds);
+            return ds;
+
+        }
     }
 }

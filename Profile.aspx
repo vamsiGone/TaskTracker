@@ -42,8 +42,8 @@
                 }
 
             .card {
-                width: 310px;
-                height: 400px;
+                width: 335px;
+                height: 445px;
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -56,59 +56,16 @@
                 flex-direction: column;
             }
 
-                .card .card-header {
-                    background: url(../Images/bg-pattern-card.svg);
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    height: 40%;
+                .card .card-body .inner {
+                    position: absolute;
+                    top: 33%;
+                    left: 50%;
+                    transform: translate(-50%, 0);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
                 }
-
-                .card .card-body {
-                    background: url(../Images/bg-pattern-card.svg);
-                    height: 40%;
-                    position: relative;
-                    width: 100%;
-                    border-bottom: 1px solid #80808042;
-                }
-
-                    .card .card-body::before {
-                        content: "";
-                        position: absolute;
-                        top: -40px;
-                        left: 50%;
-                        background: white;
-                        transform: translate(-50%, 0);
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        width: 80px;
-                        height: 80px;
-                        border-radius: 50%;
-                    }
-
-                    .card .card-body::after {
-                        content: "";
-                        position: absolute;
-                        top: -87px;
-                        left: 50%;
-                        background: url(../Images/user.png) white;
-                        transform: translate(-50%, 0);
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        width: 126px;
-                        height: 126px;
-                        border-radius: 50%;
-                    }
-
-                    .card .card-body .inner {
-                        position: absolute;
-                        top: 33%;
-                        left: 50%;
-                        transform: translate(-50%, 0);
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                    }
 
                 .card .card-footer {
                     height: 20%;
@@ -117,6 +74,7 @@
                     justify-content: space-around;
                     align-items: center;
                     background-color: #e7b3b3;
+                    margin-top: 297px;
                 }
 
                     .card .card-footer .inner {
@@ -126,11 +84,7 @@
                         align-items: center;
                     }
 
-                        .card .card-footer .inner div:first-child {
-                            font-size: 18px;
-                            font-weight: bold;
-                            margin-bottom: -2px;
-                        }
+
 
                         .card .card-footer .inner div:last-child {
                             font-size: 14px;
@@ -157,6 +111,14 @@
 
             #Uploadfile {
                 display: none;
+            }
+
+            .PreviewImage {
+                width: 200px;
+                height: 200px;
+                border: 1px solid white;
+                margin-top: -64px;
+                border-radius: 40px;
             }
 
             @media only screen and (max-width: 568px) {
@@ -186,19 +148,20 @@
             <div class="card-body">
 
                 <div class="inner">
-                    <div style="font-size: 18px; letter-spacing: .5px; margin-bottom: 10px;"><b style="font-size: 27px;">Vamsi Reddy</b></div>
+                    <img src="<%=ImageUrl %>" alt="Profile" class="PreviewImage" />
+                    <div style="font-size: 18px; letter-spacing: .5px; margin-bottom: 10px;"><b style="font-size: 27px;"><%=Name%></b></div>
                     <div style="font-size: 13px; letter-spacing: .5px;">
-                        <span class="label label-primary">vamsigone001@gmail.com</span>
+                        <span class="label label-primary"><%=currentUser %></span>
                     </div>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="inner">
-                    <div>80K</div>
+                    <div><%=TasksCreated%></div>
                     <div class="color__gray">Events</div>
                 </div>
                 <div class="inner">
-                    <div>803K</div>
+                    <div><%=TasksCreated%></div>
                     <div class="color__gray">
                         &nbsp;Tasks
                         <br />
@@ -206,7 +169,7 @@
                     </div>
                 </div>
                 <div class="inner">
-                    <div>1.4K</div>
+                    <div><%=TasksCompleted%></div>
                     <div class="color__gray">
                         &nbsp;&nbsp;&nbsp;Tasks
                         <br />
@@ -232,38 +195,18 @@
                             <asp:Button ID="RemovePic" CssClass="btn btn-danger" runat="server" Text="Remove Profile" />
                             <button id="ChangePic" type="button" class="btn btn-success">Change Pic</button>
                             <br />
-                            <br />
+                            <br /><br />
                             <div id="Uploadfile">
-                                  <asp:Panel ID="frmConfirmation"  runat="server">
-                              <div class="form-group">
-                                                <div class="imageupload">
-                                                  <div class="file-tab">
-                                                    <label class="btn btn-default btn-file">
-                                                      <span>Browse</span>
-                                                      <input id="File1" runat="server" type="file" name="image-file" />
-                                                    </label>
-                                                    <button type="button" class="btn btn-danger">
-                                                      Remove
-                                                    </button>
-                                                  </div>
-                                                  <div class="url-tab panel-body">
-                                                    <div class="input-group">
-                                                      <input type="text" class="form-control hasclear" placeholder="Image URL" />
-                                                      <div class="input-group-btn">
-                                                        <button type="button" class="btn btn-default">
-                                                          Submit
-                                                        </button>
-                                                      </div>
-                                                    </div>
-                                                    <button type="button" class="btn btn-danger">
-                                                      Remove
-                                                    </button>
-                                                    <input type="hidden" name="image-url" />
-                                                  </div>
-                                                </div>
-                                              </div>
-                                    </asp:Panel>
+                                <div class="form-group">
+                                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                                    <div id="Preview ">
+                                        <img src="<%=ImageUrl %>" alt="preview" style=" margin-top: -12px;width: 200px; height: 200px; border: 1px solid white; border-radius: 40px; " />
+                                    </div>
+                                    <br /><br />
+                                    <asp:Button ID="btnUpload" class="btn btn-success " runat="server" Text="Submit" OnClick="btnUpload_Click" />
+                                    <asp:Button ID="btnRemove" CssClass="btn btn-danger" runat="server" Text="Cancel" />
 
+                                </div>
                             </div>
                         </center>
                     </div>
@@ -278,15 +221,18 @@
 
 
             $("#ChangePic").click(function () {
-                if ($("#Uploadfile").css('display') == 'none') {
 
-                    $("#Uploadfile").css("display", "block");
-                }
-                else {
-                    $("#Uploadfile").css("display", "none");
-                }
+                $("#Uploadfile").css("display", "block");
 
+                //$("#FileUpload1").click();
             });
+
+            $("#btnRemove").click(function () {
+
+                location.reload(true);
+            });
+
+
         });
     </script>
 
