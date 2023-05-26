@@ -155,6 +155,10 @@
                 border: 1px solid rgba(162, 181, 192, 0.3);
             }
 
+            #Uploadfile {
+                display: none;
+            }
+
             @media only screen and (max-width: 568px) {
                 body::before {
                     top: -25%;
@@ -218,7 +222,7 @@
                 <div class="modal-content" id="EditModal">
                     <div class="modal-header">
                         <div style="background: white; float: right;">
-                            <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal" style="width: 20px;" >X</button>
+                            <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal" style="width: 20px;">X</button>
 
                         </div>
                         <h4 class="modal-title" style="color: greenyellow;">Edit</h4>
@@ -226,10 +230,20 @@
                     <div class="modal-body">
                         <center>
                             <asp:Button ID="RemovePic" CssClass="btn btn-danger" runat="server" Text="Remove Profile" />
-                            <asp:Button ID="ChangePic" CssClass="btn btn-success" runat="server" Text="Upload Pic" OnClick="ChangePic_Click" />
-                            <br /><br />
-                            <div>
-                            <asp:FileUpload ID="FileUpload1" runat="server" visible="false"/>
+                            <button id="ChangePic" type="button" class="btn btn-success">Change Pic</button>
+                            <br />
+                            <br />
+                            <div id="Uploadfile">
+                                  <asp:Panel ID="frmConfirmation"  runat="server">
+                                <form id="Form1" method="post" enctype="multipart/form-data" action="Profile.aspx">
+                                    Image file to upload to the server:
+                                    <input id="oFile" type="file" runat="server" name="oFile">
+                                    <asp:Button ID="btnUpload" type="submit" Text="Upload"  enableEventValidation="true" runat="server"></asp:Button>
+                                  
+                                        <asp:Label ID="lblUploadResult" Visible="false" runat="server"></asp:Label>
+                                 </form>
+                                    </asp:Panel>
+
                             </div>
                         </center>
                     </div>
@@ -239,7 +253,23 @@
         </div>
 
     </body>
-    </html>
-<%--    TaskTracker--%>
+    <script>
+        $(document).ready(function () {
 
+
+            $("#ChangePic").click(function () {
+                if ($("#Uploadfile").css('display') == 'none') {
+
+                    $("#Uploadfile").css("display", "block");
+                }
+                else {
+                    $("#Uploadfile").css("display", "none");
+                }
+
+            });
+        });
+    </script>
+
+    </html>
+    <%--    TaskTracker--%>
 </asp:Content>
