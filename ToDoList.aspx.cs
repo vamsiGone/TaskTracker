@@ -21,6 +21,7 @@ namespace TaskTracker
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["Title"] = "Pending";
+           // Session["currentUser"] = Request.QueryString["currentUser"];
             currentUser = Session["CurrentUser"] as string;
             DateIn = DateInput.Text;
 

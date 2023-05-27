@@ -49,11 +49,10 @@ namespace AdminControl
         [Obsolete]
         protected void UsersDataBind()
         {
-            using (DataSet datagrid = objTransactionBO.UsersData())
+            using (DataSet datagrid = objTransactionBO.UsersData("Admin", currentUser))
             {
                 if (datagrid != null && datagrid.Tables.Count > 0 && datagrid.Tables[0].Rows.Count > 0)
                 {
-
                     UsersRepeater.Visible = true;
                     UsersRepeater.DataSource = datagrid;
                     UsersRepeater.DataBind();
@@ -156,9 +155,9 @@ namespace AdminControl
         {
             if (e.CommandName == "Delete")
             {
-                int id = Convert.ToInt32(e.CommandArgument);
+                string user = Convert.ToString(e.CommandArgument);
 
-                using (DataSet ds = objTransactionBO.DeleteUser(currentUser))
+                using (DataSet ds = objTransactionBO.DeleteUser(user))
                 {
                     if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                     {
@@ -173,12 +172,20 @@ namespace AdminControl
                 }
             }
 
-        }
+            if (e.CommandName == "ViewUser")
+            {
+                string user = Convert.ToString(e.CommandArgument);
+                using (DataSet datagrid = objTransactionBO.UsersData("QueryString", user))
+                {
+                    if (datagrid != null && datagrid.Tables.Count > 0 && datagrid.Tables[0].Rows.Count > 0)
+                    {
+                        string LogUser= (datagrid.Tables[0].Rows[0]["com"].ToString());
 
-        protected void btnNames_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/GridList.aspx");
+                        Response.Redirect("~/ToDoList.aspx?currentUser="+LogUser+"");
+                    }
 
+                }
+            }
         }
 
     }

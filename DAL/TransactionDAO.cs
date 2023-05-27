@@ -165,12 +165,14 @@ namespace DAL
             return ds;
 
         }
-        public DataSet UsersData()
+        public DataSet UsersData(string action, string user)
         {
             DataSet ds = new DataSet();
             SqlCommand cmd = new SqlCommand("UsersData", objSqlConnection);
-            cmd.CommandType = CommandType.StoredProcedure;  
-            
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Action", action);
+            cmd.Parameters.AddWithValue("@user", user);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             sda.Fill(ds);
             return ds;
@@ -179,7 +181,7 @@ namespace DAL
         public DataSet DeleteUser(string user)
         {
             DataSet ds = new DataSet();
-            SqlCommand cmd = new SqlCommand("UsersData", objSqlConnection);
+            SqlCommand cmd = new SqlCommand("DeleteUser", objSqlConnection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@email", user);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);

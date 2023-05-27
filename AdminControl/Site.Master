@@ -100,7 +100,7 @@
                 <div class="modal-content" id="PwdContent">
                     <div class="modal-header">
                         <div style="background: white; float: right;">
-                            <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal" style="width: 20px;">X</button>
+                            <button type="button" aria-label="Close" data-toggle="tooltip" title="close" data-dismiss="modal" style="width: 25px;">X</button>
 
                         </div>
                         <h4 class="modal-title" id="PwdLabel" style="color: greenyellow;">Password Change</h4>
@@ -161,7 +161,7 @@
                 <div class="modal-content" id="PwdPolicy">
                     <div class="modal-header">
                         <div style="background: white; float: right;">
-                            <button type="button" aria-label="Close" data-dismiss="modal" style="width: 20px;">X</button>
+                            <button type="button" aria-label="Close" data-dismiss="modal" style="width: 25px;">X</button>
 
                         </div>
                         <h4 class="modal-title" style="color: #00FF00;">Password Policy</h4>
@@ -190,7 +190,7 @@
                 <div class="modal-content" id="EmailEntryy">
                     <div class="modal-header">
                         <div style="background: white; float: right;">
-                            <button type="button" aria-label="Close" data-dismiss="modal" style="width: 20px;">X</button>
+                            <button type="button" aria-label="Close" data-dismiss="modal" style="width: 25px;">X</button>
 
                         </div>
                         <h4 class="modal-title" style="color: #00FF00;">Email</h4>
