@@ -149,6 +149,7 @@
     <Content Include="Images\delete.png" />
     <Content Include="Images\edit.png" />
     <Content Include="Images\user.png" />
+    <Content Include="Images\UserImages\user.png" />
     <Content Include="Login.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
@@ -275,7 +276,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\UserImages\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

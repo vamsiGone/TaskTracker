@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Profile.aspx.cs" Inherits="TaskTracker.Profile" %>
+﻿<%@ Page Title="Profile" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Profile.aspx.cs" Inherits="TaskTracker.Profile" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -149,7 +149,7 @@
 
                 <div class="inner">
                     <img src="<%=ImageUrl %>" alt="Profile" class="PreviewImage" />
-                    <div style="font-size: 18px; letter-spacing: .5px; margin-bottom: 10px;"><b style="font-size: 27px;"><%=Name%></b></div>
+                    <div style="font-size: 18px; letter-spacing: .5px; margin-bottom: 10px;"><b style="font-size:27px;" ><%=Name%></b></div>
                     <div style="font-size: 13px; letter-spacing: .5px;">
                         <span class="label label-primary"><%=currentUser %></span>
                     </div>
@@ -192,17 +192,19 @@
                     </div>
                     <div class="modal-body">
                         <center>
-                            <asp:Button ID="RemovePic" CssClass="btn btn-danger" runat="server" Text="Remove Profile" />
-                            <button id="ChangePic" type="button" class="btn btn-success">Change Pic</button>
+                            <asp:Button ID="RemovePic" CssClass="btn btn-danger" runat="server" Text="Remove Profile" OnClick="RemovePic_Click" />
+                            <button id="ChangePic" type="button" class="btn btn-success">Change Pic </button>
                             <br />
-                            <br /><br />
+                            <br />
+                            <br />
                             <div id="Uploadfile">
                                 <div class="form-group">
-                                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                                   <asp:FileUpload ID="FileUpload1" runat="server" />
                                     <div id="Preview ">
-                                        <img src="<%=ImageUrl %>" alt="preview" style=" margin-top: -12px;width: 200px; height: 200px; border: 1px solid white; border-radius: 40px; " />
+                                        <asp:Image runat="server" ID="PreviewImage" Width="200" Height="200" Style="margin-top: 20px; border-radius: 19px;" />
                                     </div>
-                                    <br /><br />
+                                    <br />
+                                    <br />
                                     <asp:Button ID="btnUpload" class="btn btn-success " runat="server" Text="Submit" OnClick="btnUpload_Click" />
                                     <asp:Button ID="btnRemove" CssClass="btn btn-danger" runat="server" Text="Cancel" />
 
@@ -217,14 +219,23 @@
 
     </body>
     <script>
+
         $(document).ready(function () {
 
+            $("#<%= FileUpload1.ClientID%>").change(function () {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#<%= PreviewImage.ClientID%>").fadeIn("slow", function () {
+                    $(this).attr("src", e.target.result).fadeIn();
+                })
+            }
+            reader.readAsDataURL($(this)[0].files[0]);
+        });
 
             $("#ChangePic").click(function () {
-
-                $("#Uploadfile").css("display", "block");
-
-                //$("#FileUpload1").click();
+         
+                 $("#Uploadfile").css("display", "block");
+               
             });
 
             $("#btnRemove").click(function () {

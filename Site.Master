@@ -222,7 +222,8 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
 
-       <%--var SessionUser = '<%=currentUser%>';
+            var SessionUser = '<%=currentUser%>';
+
             if (SessionUser == null || SessionUser == "") {
                 $('#ProfileView').click(function () {
                     AlertMessage('error', 'Sign in First, Try Again', true);
@@ -240,34 +241,35 @@
                     return false;
 
                 });
-            }--%>
+            }
 
-            $("#EmailEnter").change(function () {
-                var currentemail = $("#EmailEnter").val();
-                var Sessionemail = '<%=currentUser%>';
-                if (currentemail == Sessionemail) {
-                    AlertMessage('success', 'Email Matched', true);
-                    return true;
-                } else {
-                    AlertMessage('error', 'Incorrect Registered Email', true);
-                    return false;
-                }
-            });
+                $("#EmailEnter").change(function () {
+                    var currentemail = $("#EmailEnter").val();
+                    var Sessionemail = '<%=currentUser%>';
+                    if (currentemail == Sessionemail) {
+                        AlertMessage('success', 'Email Matched', true);
+                        return true;
+                    } else {
+                        AlertMessage('error', 'Incorrect Registered Email', true);
+                        return false;
+                    }
+                });
 
-            $("#Password").keyup(function () {
-                var currentpwd = $("#Password").val();
-                var SessionPwd = '<%=pwd%>';
-                if (currentpwd == SessionPwd) {
-                    $("#current").removeClass("glyphicon-remove");
-                    $("#current").addClass("glyphicon-ok");
-                    $("#current").css("color", "#00A41E");
-                } else {
+                $("#Password").keyup(function () {
+                    var currentpwd = $("#Password").val();
+                    var SessionPwd = '<%=pwd%>';
+                    if (currentpwd == SessionPwd) {
+                        $("#current").removeClass("glyphicon-remove");
+                        $("#current").addClass("glyphicon-ok");
+                        $("#current").css("color", "#00A41E");
+                    } else {
 
-                    $("#current").removeClass("glyphicon-ok");
-                    $("#current").addClass("glyphicon-remove");
-                    $("#current").css("color", "#FF0004");
-                }
-            });
+                        $("#current").removeClass("glyphicon-ok");
+                        $("#current").addClass("glyphicon-remove");
+                        $("#current").css("color", "#FF0004");
+                    }
+                });
+            
 
 
         });

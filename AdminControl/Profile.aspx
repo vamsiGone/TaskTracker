@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../AdminControl/Site.Master" CodeBehind="Profile.aspx.cs" Inherits="AdminControl.Profile" %>
+﻿<%@ Page Title="Profile" Language="C#" AutoEventWireup="true" MasterPageFile="~/AdminControl/Site.Master" CodeBehind="Profile.aspx.cs" Inherits="AdminControl.Profile" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="AdminContent" runat="server">
 
+    
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-
-        <title></title>
+        <title>Profile</title>
         <style>
             * {
                 margin: 0px;
@@ -43,8 +43,8 @@
                 }
 
             .card {
-                width: 310px;
-                height: 400px;
+                width: 335px;
+                height: 445px;
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -57,59 +57,16 @@
                 flex-direction: column;
             }
 
-                .card .card-header {
-                    background: url(../Images/bg-pattern-card.svg);
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    height: 40%;
+                .card .card-body .inner {
+                    position: absolute;
+                    top: 33%;
+                    left: 50%;
+                    transform: translate(-50%, 0);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
                 }
-
-                .card .card-body {
-                    background: url(../Images/bg-pattern-card.svg);
-                    height: 40%;
-                    position: relative;
-                    width: 100%;
-                    border-bottom: 1px solid #80808042;
-                }
-
-                    .card .card-body::before {
-                        content: "";
-                        position: absolute;
-                        top: -40px;
-                        left: 50%;
-                        background: white;
-                        transform: translate(-50%, 0);
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        width: 80px;
-                        height: 80px;
-                        border-radius: 50%;
-                    }
-
-                    .card .card-body::after {
-                        content: "";
-                        position: absolute;
-                        top: -87px;
-                        left: 50%;
-                        background: url(../Images/user.png) white;
-                        transform: translate(-50%, 0);
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        width: 130px;
-                        height: 130px;
-                        border-radius: 50%;
-                    }
-
-                    .card .card-body .inner {
-                        position: absolute;
-                        top: 33%;
-                        left: 50%;
-                        transform: translate(-50%, 0);
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                    }
 
                 .card .card-footer {
                     height: 20%;
@@ -118,6 +75,7 @@
                     justify-content: space-around;
                     align-items: center;
                     background-color: #e7b3b3;
+                    margin-top: 297px;
                 }
 
                     .card .card-footer .inner {
@@ -127,11 +85,7 @@
                         align-items: center;
                     }
 
-                        .card .card-footer .inner div:first-child {
-                            font-size: 18px;
-                            font-weight: bold;
-                            margin-bottom: -2px;
-                        }
+
 
                         .card .card-footer .inner div:last-child {
                             font-size: 14px;
@@ -156,6 +110,18 @@
                 border: 1px solid rgba(162, 181, 192, 0.3);
             }
 
+            #Uploadfile {
+                display: none;
+            }
+
+            .PreviewImage {
+                width: 200px;
+                height: 200px;
+                border: 1px solid white;
+                margin-top: -64px;
+                border-radius: 40px;
+            }
+
             @media only screen and (max-width: 568px) {
                 body::before {
                     top: -25%;
@@ -172,7 +138,7 @@
         </style>
     </head>
     <body>
-
+        <%--    AdminControl--%>
 
         <div class="card">
             <div class="card-header">
@@ -181,20 +147,22 @@
                 <i class="bi bi-pencil-square" data-toggle="modal" data-target="#staticBackdrop" style="font-size: 30px; margin-left: 150px;"></i>
             </div>
             <div class="card-body">
+
                 <div class="inner">
-                    <div style="font-size: 18px; letter-spacing: .5px; margin-bottom: 10px;"><b style="font-size: 27px;">Vamsi Reddy</b></div>
+                    <img src="<%=ImageUrl %>" alt="Profile" class="PreviewImage" />
+                    <div style="font-size: 18px; letter-spacing: .5px; margin-bottom: 10px;"><b style="font-size: 27px;"><%=Name%></b></div>
                     <div style="font-size: 13px; letter-spacing: .5px;">
-                        <span class="label label-dark">vamsigone001@gmail.com</span>
+                        <span class="label label-primary"><%=currentUser %></span>
                     </div>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="inner">
-                    <div>80K</div>
+                    <div><%=TasksCreated%></div>
                     <div class="color__gray">Events</div>
                 </div>
                 <div class="inner">
-                    <div>803K</div>
+                    <div><%=TasksCreated%></div>
                     <div class="color__gray">
                         &nbsp;Tasks
                         <br />
@@ -202,7 +170,7 @@
                     </div>
                 </div>
                 <div class="inner">
-                    <div>1.4K</div>
+                    <div><%=TasksCompleted%></div>
                     <div class="color__gray">
                         &nbsp;&nbsp;&nbsp;Tasks
                         <br />
@@ -211,7 +179,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -225,6 +192,26 @@
                         <h4 class="modal-title" style="color: greenyellow;">Edit</h4>
                     </div>
                     <div class="modal-body">
+                        <center>
+                            <asp:Button ID="RemovePic" CssClass="btn btn-danger" runat="server" Text="Remove Profile" OnClick="RemovePic_Click" />
+                            <button id="ChangePic" type="button" class="btn btn-success">Change Pic</button>
+                            <br />
+                            <br />
+                            <br />
+                            <div id="Uploadfile">
+                                <div class="form-group">
+                                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                                    <div id="Preview ">
+                                        <asp:Image runat="server" ID="PreviewImage" Width="200" Height="200" Style="margin-top: 20px;border-radius: 19px;" />
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <asp:Button ID="btnUpload" class="btn btn-success " runat="server" Text="Submit" OnClick="btnUpload_Click" />
+                                    <asp:Button ID="btnRemove" CssClass="btn btn-danger" runat="server" Text="Cancel" />
+
+                                </div>
+                            </div>
+                        </center>
                     </div>
 
                 </div>
@@ -232,7 +219,36 @@
         </div>
 
     </body>
+    <script>
+        $(document).ready(function () {
+
+           /* AdminControl*/
+
+            $("#<%= FileUpload1.ClientID%>").change(function () {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#<%= PreviewImage.ClientID%>").fadeIn("slow", function () {
+                    $(this).attr("src", e.target.result).fadeIn();
+                })
+            }
+            reader.readAsDataURL($(this)[0].files[0]);
+        });
+
+            $("#ChangePic").click(function () {
+
+                $("#Uploadfile").css("display", "block");
+               
+            });
+
+            $("#btnRemove").click(function () {
+
+                location.reload(true);
+            });
+
+
+        });
+    </script>
+
     </html>
-
-
+   
 </asp:Content>

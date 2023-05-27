@@ -24,7 +24,7 @@ namespace TaskTracker
         public string Name = "";
         public string currentUser = "";
         public string PhotoUrl = "";
-        public string Bio = "";
+   
         public string TasksCreated = "0";
         public string TasksCompleted = "0";
         public string pwd = "";
@@ -34,12 +34,12 @@ namespace TaskTracker
             Name = Session["Name"] as string;
             currentUser = Session["CurrentUser"] as string;
             PhotoUrl = Session["PhotoUrl"] as string;
-            Bio = Session["Bio"] as string;
+         
             TasksCreated = Session["TasksCreated"] as string;
             TasksCompleted = Session["TasksCompleted"] as string;
             pwd = Session["pwd"] as string;
 
-            ImageUpdate();
+            ImageUpdate();          
         }
 
         [Obsolete]
@@ -51,10 +51,12 @@ namespace TaskTracker
 
                 string ImagePath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadPath"]);
                 string DirPath = Server.MapPath(ImagePath);
-
-                Session["DirPath"] = DirPath;
-
+           
                 FileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
+
+                Session["PhotoUrl"] = FileName;
+
+                ImageUpdate();
 
                 using (DataSet ds = objTransactionBO.ImageUpload( FileName, Convert.ToString(Session["currentUser"])))
                 {
@@ -73,13 +75,16 @@ namespace TaskTracker
                            
                             FileUpload1.PostedFile.SaveAs(path);
 
+                            Session["PhotoUrl"] = FileName;
 
-                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Image Uploaded Successfully')});", false);
+                            ImageUpdate();
+
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Image Uploaded Successfully')});", true);
                             return;
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Image Uploaded Successfully')});", false);
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Image Upload Failed')});", true);
                             return;
                         }
                     }
@@ -103,20 +108,19 @@ namespace TaskTracker
             
                 if(currentUser != null && currentUser != "")
                 {
-                    ImageName = Session["ImageName"] as string;
-                   // FilePath = Session["DirPath"] as string;
+                    ImageName = Session["PhotoUrl"] as string;                
                    ImageUrl = string.Concat("..\\Images\\UserImages\\" + ImageName);
-
                 }
                 else
                 {
-                    ImageUrl = "..\\Images\\user.png\\";
+                    ImageUrl = "..\\Images\\user.png";
                 }
         
         }
 
-        protected void btnRemove_Click(object sender, EventArgs e)
+        protected void RemovePic_Click(object sender, EventArgs e)
         {
+            ImageUrl = "..\\Images\\user.png";
 
         }
     }

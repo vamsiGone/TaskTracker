@@ -89,7 +89,9 @@
 
         </div>
         <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="AdminContent" runat="server">
+
+            </asp:ContentPlaceHolder>
         </div>
 
         <%--Password change modal start--%>

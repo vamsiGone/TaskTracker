@@ -19,7 +19,7 @@ namespace TaskTracker
         public string Name = "";
         public string currentUser = "";
         public string PhotoUrl = "";
-        public string Bio = "";
+    
         public string TasksCreated = "0";
         public string TasksCompleted = "0";
         protected string pwd = "";
@@ -30,7 +30,7 @@ namespace TaskTracker
             Name = Session["Name"] as string;
             currentUser = Session["CurrentUser"] as string;
             PhotoUrl = Session["PhotoUrl"] as string;
-            Bio = Session["Bio"] as string;
+        
             TasksCreated = Session["TasksCreated"] as string;
             TasksCompleted = Session["TasksCompleted"] as string;
             pwd = Session["pwd"] as string;
@@ -44,7 +44,7 @@ namespace TaskTracker
             Session["Name"] = "";
             Session["CurrentUser"] = "";
             Session["pwd"] = "";
-            Session["Bio"] = "";
+    
             Session["PhotoUrl"] = "";
             Session["TasksCreated"] = "";
             Session["TasksCompleted"] = "";
