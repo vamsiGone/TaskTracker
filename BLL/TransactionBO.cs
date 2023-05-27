@@ -87,6 +87,18 @@ namespace BLL
             objDataSet = objTransactionDAO.GetImagePath(user);
             return objDataSet;
         }
+        public DataSet UsersData()
+        {
+            DataSet objDataSet;
+            objDataSet = objTransactionDAO.UsersData();
+            return objDataSet;
+        }
+        public DataSet DeleteUser(string user)
+        {
+            DataSet objDataSet;
+            objDataSet = objTransactionDAO.DeleteUser(user);
+            return objDataSet;
+        }
 
 
     }

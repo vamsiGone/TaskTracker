@@ -26,7 +26,9 @@ namespace AdminControl
         public string TasksCompleted = "0";
         public string pwd = "";
 
-        protected void Page_Load(object sender, System.EventArgs e)
+
+        [Obsolete]
+        protected void Page_Load(object sender, EventArgs e)
         {
             Name = Session["Name"] as string;
             currentUser = Session["CurrentUser"] as string;
@@ -36,7 +38,34 @@ namespace AdminControl
             TasksCompleted = Session["TasksCompleted"] as string;
             pwd = Session["pwd"] as string;
 
+            if (currentUser == "" || currentUser == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
             ImageUpdate();
+            UsersDataBind();
+        }
+
+        [Obsolete]
+        protected void UsersDataBind()
+        {
+            using (DataSet datagrid = objTransactionBO.UsersData())
+            {
+                if (datagrid != null && datagrid.Tables.Count > 0 && datagrid.Tables[0].Rows.Count > 0)
+                {
+
+                    UsersRepeater.Visible = true;
+                    UsersRepeater.DataSource = datagrid;
+                    UsersRepeater.DataBind();
+                    lblUser.Text = String.Empty;
+                }
+                else
+                {
+                    UsersRepeater.Visible = false;
+                    lblUser.Text = "No Users Are Found";
+
+                }
+            }
         }
 
         [Obsolete]
@@ -78,7 +107,7 @@ namespace AdminControl
 
                             ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Image Uploaded Successfully')});", true);
                             return;
-                          
+
                         }
                         else
                         {
@@ -117,9 +146,40 @@ namespace AdminControl
         }
 
         protected void RemovePic_Click(object sender, EventArgs e)
-        { 
+        {
             ImageUrl = "..\\Images\\user.png";
 
         }
+
+        [Obsolete]
+        protected void UsersRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Delete")
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
+
+                using (DataSet ds = objTransactionBO.DeleteUser(currentUser))
+                {
+                    if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    {
+                        string Status = (ds.Tables[0].Rows[0]["com"].ToString());
+
+                        if (Status == "1")
+                        {
+                            UsersDataBind();
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        protected void btnNames_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/GridList.aspx");
+
+        }
+
     }
 }

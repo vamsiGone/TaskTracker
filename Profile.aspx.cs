@@ -38,7 +38,10 @@ namespace TaskTracker
             TasksCreated = Session["TasksCreated"] as string;
             TasksCompleted = Session["TasksCompleted"] as string;
             pwd = Session["pwd"] as string;
-
+            if (currentUser == "" || currentUser == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             ImageUpdate();          
         }
 

@@ -77,7 +77,7 @@ namespace TaskTracker
 
                             if (Name == "Admin" && Email == "vamsi@admin.com")
                             {
-                                Response.Redirect("AdminControl/Dashboard.aspx");
+                                Response.Redirect("AdminControl/Profile.aspx");
                             }
                             else
                             {

@@ -1,55 +1,17 @@
-﻿<%@ Page Title="Profile" Language="C#" AutoEventWireup="true" MasterPageFile="~/AdminControl/Site.Master" CodeBehind="Profile.aspx.cs" Inherits="AdminControl.Profile" %>
+﻿<%@ Page Title="Profile" Language="C#" AutoEventWireup="true" MasterPageFile="../AdminControl/Site.Master" CodeBehind="Profile.aspx.cs" Inherits="AdminControl.Profile" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="AdminContent" runat="server">
 
-    
-    <html xmlns="http://www.w3.org/1999/xhtml">
+
+    <html>
     <head>
         <title>Profile</title>
         <style>
-            * {
-                margin: 0px;
-                padding: 0px;
-            }
-
-            body {
-                position: relative;
-                width: 100%;
-                height: 100vh;
-                overflow: hidden;
-                font-family: sans-serif;
-            }
-
-                body::before {
-                    content: "";
-                    position: absolute;
-                    top: -50%;
-                    left: 0;
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    width: 100%;
-                    height: 100%;
-                }
-
-                body::after {
-                    content: "";
-                    position: absolute;
-                    bottom: -65%;
-                    right: -52%;
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    width: 100%;
-                    height: 120%;
-                }
-
             .card {
                 width: 335px;
                 height: 445px;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: white;
+                top: 20%;
+                background: aqua;
                 border-radius: 10px;
                 z-index: 2;
                 overflow: hidden;
@@ -60,8 +22,7 @@
                 .card .card-body .inner {
                     position: absolute;
                     top: 33%;
-                    left: 50%;
-                    transform: translate(-50%, 0);
+                    margin-left: 63px;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -122,6 +83,22 @@
                 border-radius: 40px;
             }
 
+            .row-list {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                list-style-type: none;
+                padding: 0;
+                justify-content: flex-start;
+            }
+
+                .row-list li {
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+                    margin-left:10px;/* Adjust the spacing between items as needed */
+                }
+
+
             @media only screen and (max-width: 568px) {
                 body::before {
                     top: -25%;
@@ -139,47 +116,83 @@
     </head>
     <body>
         <%--    AdminControl--%>
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <br />
+                            <b style="font-size: 30px; margin-left: 15px;">Profile</b>
+                            <i class="bi bi-pencil-square" data-toggle="modal" data-target="#staticBackdrop" style="font-size: 30px; margin-left: 150px;"></i>
+                        </div>
+                        <div class="card-body">
 
-        <div class="card">
-            <div class="card-header">
-                <br />
-                <b style="font-size: 30px; margin-left: 15px;">Profile</b>
-                <i class="bi bi-pencil-square" data-toggle="modal" data-target="#staticBackdrop" style="font-size: 30px; margin-left: 150px;"></i>
-            </div>
-            <div class="card-body">
+                            <div class="inner">
+                                <img src="<%=ImageUrl %>" alt="Profile" class="PreviewImage" />
+                                <div style="font-size: 18px; letter-spacing: .5px; margin-bottom: 10px;"><b style="font-size: 27px;"><%=Name%></b></div>
+                                <div style="font-size: 13px; letter-spacing: .5px;">
+                                    <span class="label label-primary"><%=currentUser %></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="inner">
+                                <div><%=TasksCreated%></div>
+                                <div class="color__gray">Events</div>
+                            </div>
+                            <div class="inner">
+                                <div><%=TasksCreated%></div>
+                                <div class="color__gray">
+                                    &nbsp;Tasks
+                        <br />
+                                    Created
+                                </div>
+                            </div>
+                            <div class="inner">
+                                <div><%=TasksCompleted%></div>
+                                <div class="color__gray">
+                                    &nbsp;&nbsp;&nbsp;Tasks
+                        <br />
+                                    Completed
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="col-md-1"><br /><br /></div>
+                <div class="col-md-7">
+                    <div id="Users" style="border:1px solid aqua; margin-top: -36px;"><br />
+                       <center> <label class="label label-success" style="font-size: 25px;">Users</label></center>
+                        <br />
+                        <br />
+                        <br />
+                        <asp:Repeater ID="UsersRepeater" runat="server" OnItemCommand="UsersRepeater_ItemCommand">
+                            <HeaderTemplate>
+                                <ul class="row-list">
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <li>
+                                    <button id="btnNames" type="button" class="btn btn-primary" onclick="btnNames_Click">
+                                        <%# Eval("Name") %> <span>
+                                            <asp:ImageButton ID="btnDelete" runat="server" data-toggle="tooltip" title="Delete" CommandName="Delete" CommandArgument='<%# Eval("SNO ") %>' ImageUrl="~/Images/delete.png" EnableEventValidation="false" OnClientClick="return confirm ('Are you sure you sure to Delete ?')" Style="width: 30px" />
+                                        </span>
+                                    </button>
+                                    
 
-                <div class="inner">
-                    <img src="<%=ImageUrl %>" alt="Profile" class="PreviewImage" />
-                    <div style="font-size: 18px; letter-spacing: .5px; margin-bottom: 10px;"><b style="font-size: 27px;"><%=Name%></b></div>
-                    <div style="font-size: 13px; letter-spacing: .5px;">
-                        <span class="label label-primary"><%=currentUser %></span>
+
+                                </li>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                </ul>
+                            </FooterTemplate>
+                        </asp:Repeater>
+                        <asp:Label ID="lblUser" runat="server" ForeColor="White"></asp:Label>
                     </div>
                 </div>
             </div>
-            <div class="card-footer">
-                <div class="inner">
-                    <div><%=TasksCreated%></div>
-                    <div class="color__gray">Events</div>
-                </div>
-                <div class="inner">
-                    <div><%=TasksCreated%></div>
-                    <div class="color__gray">
-                        &nbsp;Tasks
-                        <br />
-                        Created
-                    </div>
-                </div>
-                <div class="inner">
-                    <div><%=TasksCompleted%></div>
-                    <div class="color__gray">
-                        &nbsp;&nbsp;&nbsp;Tasks
-                        <br />
-                        Completed
-                    </div>
-                </div>
-            </div>
+
         </div>
-
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -202,7 +215,7 @@
                                 <div class="form-group">
                                     <asp:FileUpload ID="FileUpload1" runat="server" />
                                     <div id="Preview ">
-                                        <asp:Image runat="server" ID="PreviewImage" Width="200" Height="200" Style="margin-top: 20px;border-radius: 19px;" />
+                                        <asp:Image runat="server" ID="PreviewImage" Width="200" Height="200" Style="margin-top: 20px; border-radius: 19px;" />
                                     </div>
                                     <br />
                                     <br />
@@ -222,22 +235,22 @@
     <script>
         $(document).ready(function () {
 
-           /* AdminControl*/
+            /* AdminControl*/
 
             $("#<%= FileUpload1.ClientID%>").change(function () {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $("#<%= PreviewImage.ClientID%>").fadeIn("slow", function () {
-                    $(this).attr("src", e.target.result).fadeIn();
-                })
-            }
-            reader.readAsDataURL($(this)[0].files[0]);
-        });
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#<%= PreviewImage.ClientID%>").fadeIn("slow", function () {
+                        $(this).attr("src", e.target.result).fadeIn();
+                    })
+                }
+                reader.readAsDataURL($(this)[0].files[0]);
+            });
 
             $("#ChangePic").click(function () {
 
                 $("#Uploadfile").css("display", "block");
-               
+
             });
 
             $("#btnRemove").click(function () {
@@ -250,5 +263,5 @@
     </script>
 
     </html>
-   
+
 </asp:Content>

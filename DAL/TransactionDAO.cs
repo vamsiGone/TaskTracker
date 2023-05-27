@@ -165,5 +165,27 @@ namespace DAL
             return ds;
 
         }
+        public DataSet UsersData()
+        {
+            DataSet ds = new DataSet();
+            SqlCommand cmd = new SqlCommand("UsersData", objSqlConnection);
+            cmd.CommandType = CommandType.StoredProcedure;  
+            
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            sda.Fill(ds);
+            return ds;
+
+        }
+        public DataSet DeleteUser(string user)
+        {
+            DataSet ds = new DataSet();
+            SqlCommand cmd = new SqlCommand("UsersData", objSqlConnection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@email", user);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            sda.Fill(ds);
+            return ds;
+
+        }
     }
 }
