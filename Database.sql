@@ -95,6 +95,42 @@ GO
 USE [practice]
 GO
 
+CREATE procedure [dbo].[DeleteUser](@email varchar(100))
+as
+begin
+Delete from Register where email= @email
+if(@@ROWCOUNT>0)
+select 1 as com
+else
+select 0 as com
+end
+
+
+
+CREATE procedure [dbo].[UsersData](
+@Action varchar(100),
+@user varchar(100)
+)
+as
+begin
+if(@Action='Admin')
+select * from Register where email <> @user
+if(@@ROWCOUNT>0)
+select 1 as com
+else
+select 0 as com
+
+if(@Action='QueryString')
+select * from Register where email = @user
+if(@@ROWCOUNT>0)
+select 1 as com
+else
+select 0 as com
+end
+
+
+
+
 /****** Object:  StoredProcedure [dbo].[ImageUpload]    Script Date: 27-05-2023 12:41:23 AM ******/
 SET ANSI_NULLS ON
 GO
