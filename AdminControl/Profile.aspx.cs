@@ -183,9 +183,14 @@ namespace AdminControl
                 {
                     if (datagrid != null && datagrid.Tables.Count > 0 && datagrid.Tables[0].Rows.Count > 0)
                     {
-                        string LogUser= (datagrid.Tables[0].Rows[0]["com"].ToString());
+                        string LogUser= (datagrid.Tables[1].Rows[0]["com"].ToString());
 
-                        Response.Redirect("~/ToDoList.aspx?currentUser="+LogUser+"");
+                        if(LogUser== "1")
+                        {
+
+                            Response.Redirect("~/ToDoList.aspx?currentUser=" + user + "");
+                        }
+
                     }
 
                 }
