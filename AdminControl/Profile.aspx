@@ -177,7 +177,7 @@
                                     <button type="button" class="btn btn-primary"><%# Eval("Name") %></button>
 <%--                                    <asp:Button id="btnNames" type="button" runat="server" class="btn btn-primary" Text="<%#Name%>" CommandName="ViewUser" CommandArgument='<%# Eval("Email ") %>' EnableEventValidation="false"/>--%>
                                         <span>
-                                            <asp:ImageButton ID="btnDelete" runat="server" data-toggle="tooltip" title="Delete" CommandName="Delete" CommandArgument='<%# Eval("Email ") %>' ImageUrl="~/Images/delete.png" EnableEventValidation="false" OnClientClick="return confirm ('Are you sure you sure to Delete ?')" Style="width: 30px" />
+                                            <asp:ImageButton ID="btnDelete" runat="server" data-toggle="tooltip" title="Delete" CommandName="Delete" CommandArgument='<%# Eval("Email ") %>' ImageUrl="~/Images/delete.png" EnableEventValidation="true" OnClientClick="return confirm ('Are you sure you sure to Delete ?')" Style="width: 30px" />
                                         </span>
                               
                                     
@@ -189,7 +189,14 @@
                                 </ul>
                             </FooterTemplate>
                         </asp:Repeater>
-                        <asp:Label ID="lblUser" runat="server" ForeColor="White"></asp:Label>
+                        <center>
+                            <asp:Label ID="lblUser" runat="server" ForeColor="White"></asp:Label>
+                        </center>
+                        
+                      
+                        <br />
+                        <br />
+                        <br />
                     </div>
                 </div>
             </div>

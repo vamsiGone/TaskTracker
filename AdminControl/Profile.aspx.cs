@@ -16,7 +16,7 @@ namespace AdminControl
 
         [Obsolete]
         TransactionBO objTransactionBO = new TransactionBO();
-        public string ImageUrl;
+        public static string ImageUrl="";
         public string ImageName;
         public string Name = "";
         public string currentUser = "";
@@ -42,8 +42,11 @@ namespace AdminControl
             {
                 Response.Redirect("~/Login.aspx");
             }
-            ImageUpdate();
-            UsersDataBind();
+            if (!IsPostBack)
+            {
+                ImageUpdate();
+                UsersDataBind();
+            }
         }
 
         [Obsolete]
@@ -57,6 +60,7 @@ namespace AdminControl
                     UsersRepeater.DataSource = datagrid;
                     UsersRepeater.DataBind();
                     lblUser.Text = String.Empty;
+                    ImageUpdate();
                 }
                 else
                 {
