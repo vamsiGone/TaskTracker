@@ -26,7 +26,7 @@ namespace TaskTracker
 
             if (currentUser == null || currentUser == String.Empty || currentUser == "")
             {
-                Response.Redirect("login.aspx");
+                Response.Redirect("Login.aspx");
             }
             if (!IsPostBack)
             {

@@ -39,7 +39,7 @@
                         <br />
                         <div class="form-group">           
                             <asp:Button ID="Register_Button" class="button" runat="server" Text="Register" OnClick="Register_Button_Click" /><br /><br /><br />
-                            <p style="color:whitesmoke">Already Registered ? <a href="login.aspx" style="color:greenyellow; text-decoration:none">Sign in</a></p>                          
+                            <p style="color:whitesmoke">Already Registered ? <a href="Login.aspx" style="color:greenyellow; text-decoration:none">Sign in</a></p>                          
                         </div>
                     </asp:Panel>
                 </div>
