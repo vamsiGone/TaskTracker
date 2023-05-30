@@ -184,11 +184,11 @@ namespace AdminControl
                     if (datagrid != null && datagrid.Tables.Count > 0 && datagrid.Tables[0].Rows.Count > 0)
                     {
                         string LogUser= (datagrid.Tables[1].Rows[0]["com"].ToString());
+                        string pwd= (datagrid.Tables[0].Rows[0]["Password"].ToString());
 
-                        if(LogUser== "1")
+                        if (LogUser== "1")
                         {
-
-                            Response.Redirect("~/ToDoList.aspx?currentUser=" + user + "");
+                            Response.Redirect("~/Login.aspx?Name=" +Name+ "&sessionMail="+currentUser+"&currentUser=" + user + "&pwd="+pwd);
                         }
 
                     }
