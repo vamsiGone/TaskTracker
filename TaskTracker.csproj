@@ -157,7 +157,6 @@
     <Content Include="Images\Index\upside_down_arrow.svg" />
     <Content Include="Images\user.png" />
     <Content Include="Images\UserImages\user.png" />
-    <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
@@ -230,13 +229,6 @@
     </Compile>
     <Compile Include="GridList.aspx.designer.cs">
       <DependentUpon>GridList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
