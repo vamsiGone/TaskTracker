@@ -21,17 +21,14 @@ namespace TaskTracker
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["Title"] = "Pending";
-           // Session["currentUser"] = Request.QueryString["currentUser"];
             currentUser = Session["CurrentUser"] as string;
             DateIn = DateInput.Text;
 
             if (currentUser == null || currentUser == String.Empty || currentUser == "")
             {
-                ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('info','Please Login First')});", false);
-
+                //ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('info','Please Login First')});", false);
                 Response.Redirect("Login.aspx");
             }
-
 
             if (!IsPostBack)
             {
@@ -202,8 +199,6 @@ namespace TaskTracker
             }
 
         }
-
-
 
         protected void Task_History_Click(object sender, EventArgs e)
         {
