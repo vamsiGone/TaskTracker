@@ -133,6 +133,8 @@ namespace AdminControl
             }
         }
 
+
+
         protected void ImageUpdate()
         {
 
@@ -188,14 +190,15 @@ namespace AdminControl
 
                         if (LogUser== "1")
                         {
-                            Response.Redirect("~/Login.aspx?Name=" +Name+ "&sessionMail="+currentUser+"&currentUser=" + user + "&pwd="+pwd);
+
+                            Response.Redirect("~/Login.aspx?Name=" + Name + "&sessionMail=" + currentUser + "&currentUser=" + user + "&pwd=" + pwd);
                         }
 
                     }
 
                 }
             }
-        }
-
+        }       
     }
 }
+

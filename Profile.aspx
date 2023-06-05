@@ -216,7 +216,38 @@
                 </div>
             </div>
         </div>
+        <%--        CREATE TABLE [dbo].[Events](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[EventName] [varchar](8000) NOT NULL,
+	[UserName] [varchar](50) NOT NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[RemainderOn] [datetime] NULL,
+	[status] [int] NOT NULL CONSTRAINT [default_value_event]  DEFAULT ((0)),
+	
+) ON [PRIMARY]
 
+    usersdata procedure
+
+    if(@Action='Update')
+begin
+declare @count varchar(100);
+declare @count1 varchar(100);
+declare @count2 varchar(100);
+--Tasks
+set @count= (select count(*)  from tasks where UserName=@user)  -- created
+update Register set TasksCreated=@count where Email=@user
+
+set @count1= (select count(*) from tasks where status=0 and UserName=@user) -- pending
+update Register set TasksCreated=@count where Email=@user
+
+set @count2= (select count(*) from tasks where status=1 and UserName=@user) --completed
+update Register set TasksCompleted=@count where Email=@user
+
+if(@count>0 or @count1>0 or @count2>0)
+begin
+select * from Register where email = @user
+end
+    --%>
     </body>
     <script>
 

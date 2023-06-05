@@ -174,14 +174,10 @@
                             <ItemTemplate>
                                 <li>
                                    
-                                    <asp:Button id="btnNames" type="button" runat="server" class="btn btn-primary" Text='<%# Eval("Name")%>' CommandName="ViewUser" CommandArgument='<%# Eval("Email ") %>' EnableEventValidation="true"/>
+                                    <asp:Button id="BtnNames" type="button" runat="server" class="btn btn-primary" Text='<%# Eval("Name")%>' CommandName="ViewUser" CommandArgument='<%# Eval("Email ") %>' EnableEventValidation="true" OnClientClick="aspnetForm.target ='_blank';setTimeout('fixform()', 500);"/>
                                         <span>
                                             <asp:ImageButton ID="btnDelete" runat="server" data-toggle="tooltip" title="Delete" CommandName="Delete" CommandArgument='<%# Eval("Email ") %>' ImageUrl="~/Images/delete.png" EnableEventValidation="true" OnClientClick="return confirm ('Are you sure you sure to Delete ?')" Style="width: 30px" />
-                                        </span>
-                              
-                                    
-
-
+                                        </span>                                                                
                                 </li>
                             </ItemTemplate>
                             <FooterTemplate>
@@ -239,11 +235,48 @@
             </div>
         </div>
 
+<%--        CREATE TABLE [dbo].[Events](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[EventName] [varchar](8000) NOT NULL,
+	[UserName] [varchar](50) NOT NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[RemainderOn] [datetime] NULL,
+	[status] [int] NOT NULL CONSTRAINT [default_value_event]  DEFAULT ((0)),
+	
+) ON [PRIMARY]
+
+    usersdata procedure
+
+    if(@Action='Update')
+begin
+declare @count varchar(100);
+declare @count1 varchar(100);
+declare @count2 varchar(100);
+--Tasks
+set @count= (select count(*)  from tasks where UserName=@user)  -- created
+update Register set TasksCreated=@count where Email=@user
+
+set @count1= (select count(*) from tasks where status=0 and UserName=@user) -- pending
+update Register set TasksCreated=@count where Email=@user
+
+set @count2= (select count(*) from tasks where status=1 and UserName=@user) --completed
+update Register set TasksCompleted=@count where Email=@user
+
+if(@count>0 or @count1>0 or @count2>0)
+begin
+select * from Register where email = @user
+end
+    --%>
+
+
     </body>
     <script>
         $(document).ready(function () {
 
             /* AdminControl*/
+            function fixform() {
+                document.getElementById("aspnetForm").target = '';
+            }
 
             $("#<%= FileUpload1.ClientID%>").change(function () {
                 var reader = new FileReader();
