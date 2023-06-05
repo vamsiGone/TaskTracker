@@ -22,8 +22,9 @@ namespace AdminControl
         public string currentUser = "";
         public string PhotoUrl = "";
 
-        public string TasksCreated = "0";
-        public string TasksCompleted = "0";
+        public string NoOfTasks = "";
+        public string NoOfEvents = "";
+        public string NoOfUsers="";
         public string pwd = "";
 
 
@@ -34,8 +35,6 @@ namespace AdminControl
             currentUser = Session["CurrentUser"] as string;
             PhotoUrl = Session["PhotoUrl"] as string;
 
-            TasksCreated = Session["TasksCreated"] as string;
-            TasksCompleted = Session["TasksCompleted"] as string;
             pwd = Session["pwd"] as string;
 
             if (currentUser == "" || currentUser == null)
@@ -46,7 +45,9 @@ namespace AdminControl
             {
                 ImageUpdate();
                 UsersDataBind();
+                CountUpdate();
             }
+            CountUpdate();
         }
 
         [Obsolete]
@@ -133,6 +134,22 @@ namespace AdminControl
             }
         }
 
+        [Obsolete]
+        protected void CountUpdate()
+        {
+            if (currentUser != null && currentUser != "")
+            {
+                using (DataSet datagrid = objTransactionBO.UsersData("AdminProfile", currentUser))
+                {
+                    if (datagrid != null && datagrid.Tables.Count > 0)
+                    {
+                        NoOfEvents = (datagrid.Tables[0].Rows[0]["NoOfEvents"].ToString());
+                        NoOfUsers = (datagrid.Tables[2].Rows[0]["NoOfUsers"].ToString());
+                        NoOfTasks = (datagrid.Tables[1].Rows[0]["NoOfTasks"].ToString());
+                    }
+                }
+            }
+        }
 
 
         protected void ImageUpdate()

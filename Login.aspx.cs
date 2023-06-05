@@ -78,6 +78,7 @@ namespace TaskTracker
                         string Email1 = (ds.Tables[1].Rows[0]["Email"].ToString());
                         string pwd = (ds.Tables[1].Rows[0]["Password"].ToString());
 
+                        string Events = (ds.Tables[1].Rows[0]["Events"].ToString());
                         string PhotoUrl = (ds.Tables[1].Rows[0]["PhotoUrl"].ToString());
                         string TasksCreated = (ds.Tables[1].Rows[0]["TasksCreated"].ToString());
                         string TasksCompleted = (ds.Tables[1].Rows[0]["TasksCompleted"].ToString());
@@ -87,7 +88,7 @@ namespace TaskTracker
                         Session["Name"] = Name;
                         Session["CurrentUser"] = Email1;
                         Session["pwd"] = pwd;
-
+                        Session["Events"] = Events;
                         Session["PhotoUrl"] = PhotoUrl;
                         Session["TasksCreated"] = TasksCreated;
                         Session["TasksCompleted"] = TasksCompleted;

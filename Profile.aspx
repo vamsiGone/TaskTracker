@@ -157,7 +157,7 @@
             </div>
             <div class="card-footer">
                 <div class="inner">
-                    <div><%=TasksCreated%></div>
+                    <div><%=EventsCount%></div>
                     <div class="color__gray">Events</div>
                 </div>
                 <div class="inner">
@@ -165,7 +165,7 @@
                     <div class="color__gray">
                         &nbsp;Tasks
                         <br />
-                        Created
+                        Pending
                     </div>
                 </div>
                 <div class="inner">
@@ -228,25 +228,35 @@
 
     usersdata procedure
 
-    if(@Action='Update')
+if(@Action='AdminProfile')
+begin
+select count(*) as NoOfEvents  from dbo.Events  -- no of Events
+select count(*) as NoOfTasks from tasks -- no of tasks
+select count(*)-1 as NoOfUsers from Register --no of users
+
+end
+
+if(@Action='Update')
 begin
 declare @count varchar(100);
 declare @count1 varchar(100);
 declare @count2 varchar(100);
 --Tasks
-set @count= (select count(*)  from tasks where UserName=@user)  -- created
-update Register set TasksCreated=@count where Email=@user
+set @count= (select count(*)  from dbo.Events where UserName=@user)  -- Events
+update Register set Events=@count where Email=@user
 
 set @count1= (select count(*) from tasks where status=0 and UserName=@user) -- pending
-update Register set TasksCreated=@count where Email=@user
+update Register set TasksCreated=@count1 where Email=@user
 
 set @count2= (select count(*) from tasks where status=1 and UserName=@user) --completed
-update Register set TasksCompleted=@count where Email=@user
+update Register set TasksCompleted=@count2 where Email=@user
 
 if(@count>0 or @count1>0 or @count2>0)
 begin
 select * from Register where email = @user
 end
+end
+
     --%>
     </body>
     <script>

@@ -24,25 +24,28 @@ namespace TaskTracker
         public string Name = "";
         public string currentUser = "";
         public string PhotoUrl = "";
-   
-        public string TasksCreated = "0";
-        public string TasksCompleted = "0";
+        public string EventsCount="";
+        public string TasksCreated = "";
+        public string TasksCompleted = "";
         public string pwd = "";
 
+        [Obsolete]
         protected void Page_Load(object sender, System.EventArgs e)
         {
             Name = Session["Name"] as string;
             currentUser = Session["CurrentUser"] as string;
             PhotoUrl = Session["PhotoUrl"] as string;
-         
+            EventsCount = Session["Events"] as string;
             TasksCreated = Session["TasksCreated"] as string;
             TasksCompleted = Session["TasksCompleted"] as string;
             pwd = Session["pwd"] as string;
+
             if (currentUser == "" || currentUser == null)
             {
                 Response.Redirect("Login.aspx");
             }
-            ImageUpdate();          
+            ImageUpdate();
+            CountUpdate();
         }
 
         [Obsolete]
@@ -106,9 +109,26 @@ namespace TaskTracker
             }
         }
 
-        protected void ImageUpdate()
+        [Obsolete]
+        protected void CountUpdate()
         {
-            
+
+            if (currentUser != null && currentUser != "")
+            {
+                using (DataSet datagrid = objTransactionBO.UsersData("Update", currentUser))
+                {
+                    if (datagrid != null && datagrid.Tables.Count > 0 && datagrid.Tables[0].Rows.Count > 0)
+                    {
+                        TasksCreated = (datagrid.Tables[0].Rows[0]["TasksCreated"].ToString());
+                        TasksCompleted= (datagrid.Tables[0].Rows[0]["TasksCompleted"].ToString());
+                        EventsCount= (datagrid.Tables[0].Rows[0]["Events"].ToString());
+                    }
+                }
+            }
+        }
+
+        protected void ImageUpdate()
+        {           
                 if(currentUser != null && currentUser != "")
                 {
                     ImageName = Session["PhotoUrl"] as string;                
