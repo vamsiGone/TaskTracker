@@ -207,8 +207,9 @@ namespace AdminControl
 
                         if (LogUser== "1")
                         {
-
-                            Response.Redirect("~/Login.aspx?Name=" + Name + "&sessionMail=" + currentUser + "&currentUser=" + user + "&pwd=" + pwd);
+                            string url = "http://localhost/TaskTracker/Login.aspx?Name=" + Name + "&sessionMail=" + currentUser + "&currentUser=" + user + "&pwd=" + pwd;
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){window.open('" + url + "', '_blank');});", true);
+                            //Response.Redirect("~/Login.aspx?Name=" + Name + "&sessionMail=" + currentUser + "&currentUser=" + user + "&pwd=" + pwd);
                         }
 
                     }

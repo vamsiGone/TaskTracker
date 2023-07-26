@@ -26,6 +26,8 @@
     <script src="css/toaster.js"></script>
     <script type="text/javascript" src="css/valid.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link href="assets/plugins/fullcalendar/fullcalendar.print.css" rel="stylesheet" media='print'/>    <link href="assets/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet"/>
 </head>
 <body>
     <%-- Task tracker  https://jsbin.com/ruqakehefa/1/edit?html,js,output--%>
@@ -280,9 +282,9 @@
 
 
     </script>
-    <script src="css/Dashboard.js"></script>
-
-
-
+  
+<script src="assets/plugins/fullcalendar/lib/moment.min.js"></script><script src="assets/plugins/fullcalendar/fullcalendar.min.js"></script><script src="assets/plugins/fullcalendar/gcal.js"></script>
+<script src="assets/js/sm_calendar_v1.js"></script>
+ <script src="assets/js/app.js"></script>
 </body>
 </html>

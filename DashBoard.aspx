@@ -1,113 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="DashBoard.aspx.cs" Inherits="TaskTracker.DashBoard" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-<%--    https://codepen.io/ankithingarajiya/pen/jQBWEz--%>
-    <div class="p-5">
-  <h2 class="mb-4">Full Calendar</h2>
-  <div class="card">
-    <div class="card-body p-0">
-      <div id="calendar"></div>
-    </div>
-  </div>
-</div>
-
-<!-- calendar modal -->
-<div id="modal-view-event" class="modal modal-top fade calendar-modal">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-body">
-					<h4 class="modal-title"><span class="event-icon"></span><span class="event-title"></span></h4>
-					<div class="event-body"></div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-<div id="modal-view-event-add" class="modal modal-top fade calendar-modal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-   
-        <div class="modal-body">
-        <h4>Add Event Detail</h4>        
-          <div class="form-group">
-            <label>Event name</label>
-            <input type="text" class="form-control" name="ename">
-          </div>
-          <div class="form-group">
-            <label>Event Date</label>
-            <input type='text' class="datetimepicker form-control" name="edate">
-          </div>        
-          <div class="form-group">
-            <label>Event Description</label>
-            <textarea class="form-control" name="edesc"></textarea>
-          </div>
-          <div class="form-group">
-            <label>Event Color</label>
-            <select class="form-control" name="ecolor">
-              <option value="fc-bg-default">fc-bg-default</option>
-              <option value="fc-bg-blue">fc-bg-blue</option>
-              <option value="fc-bg-lightgreen">fc-bg-lightgreen</option>
-              <option value="fc-bg-pinkred">fc-bg-pinkred</option>
-              <option value="fc-bg-deepskyblue">fc-bg-deepskyblue</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Event Icon</label>
-            <select class="form-control" name="eicon">
-              <option value="circle">circle</option>
-              <option value="cog">cog</option>
-              <option value="group">group</option>
-              <option value="suitcase">suitcase</option>
-              <option value="calendar">calendar</option>
-            </select>
-          </div>        
-      </div>
-        <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" >Save</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>        
-      </div>
-     
-    </div>
-  </div>
-</div>
-
-
-<%--<div class="related-product">
-			<div class="container">
-        <h1 class="text-center mb-5" hidden>Bootstrap 4 Admin Panel</h1>
-				<ul class="row justify-content-center">
-					<li class="col-md-6 col-sm-12">
-						<a href="https://github.com/dropways/deskapp" target="_blank">
-							<div class="related-box">
-								<img src="https://dropways.github.io/feathericons/assets/themes/twitter/images/deskapp.png" alt="deskapp">
-							</div>
-							<h3>DeskApp Bootstrap 4 admin template</h3>
-							<p>DeskApp Admin is a free to use Bootstrap 4 admin template. This template uses the default Bootstrap 4 styles along with a variety of powerful jQuery plugins and tools to create a powerful framework for creating admin panels or back-end dashboards.</p>
-						</a>
-            <div class="text-center">
-              <a href="https://github.com/dropways/deskapp" target="_blank" class="btn btn-primary btn-lg download-btn"><i class="fa fa-github"></i> Download Now</a>
-            </div>
-					</li>
-          <li class="col-md-6 col-sm-12">
-						<a href="https://codepen.io/ankithingarajiya/pen/WNaQdOw" target="_blank">
-							<div class="related-box related-box-iframe">
-								<iframe height="300" style="width: 100%;" scrolling="no" title="Cross Fade Image Animation Using Bootstrap Carousel" src="https://codepen.io/ankithingarajiya/embed/WNaQdOw?default-tab=" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/ankithingarajiya/pen/WNaQdOw">
-  Cross Fade Image Animation Using Bootstrap Carousel</a> by Ankit Hingarajiya (<a href="https://codepen.io/ankithingarajiya">@ankithingarajiya</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
-							</div>
-							<h3>Cross Fade Image Animation Using Bootstrap Carousel</h3>
-						</a>
-            <div class="text-center">
-              <a href="https://codepen.io/ankithingarajiya/pen/WNaQdOw" target="_blank" class="btn btn-primary btn-lg download-btn"><i class="fa fa-codepen"></i> View Pen</a>
-            </div>
-					</li>
-				</ul>
-			</div>
-		</div>--%>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">\
+      <div class="col-lg-9">                    <div class="panel">                        <div class="panel-heading">                            <h6 class="panel-title">Calendar v1</h6>                            <div class="heading-elements">                                <ul class="icons-list">                                    <li class="fullscreen_element"><a href="javascript:void(0)"></a></li>                                    <li class="collapse_element"><a class="up" href="javascript:void(0)"></a></li>                                    <li class="refresh_element"><a href="javascript:void(0)"></a></li>                                    <li class="close_element"><a href="javascript:void(0)"></a></li>                                </ul>                            </div>                        </div>                        <div class="panel-body">                            <div class="row">                                <div class="col-lg-12">                                    <div id="calendar" class="vertical-box-column calendar"></div>                                </div>                            </div>                        </div>                    </div>                </div>          
 </asp:Content>
 
