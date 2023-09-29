@@ -12,7 +12,7 @@ A brief description of what this project does.
 
 A step-by-step guide on how to install and run this project. You can also include any dependencies that need to be installed, and any commands that need to be run to set up the project.
 
-- First Open your database and create the tables and stored procedures in the db.txt file 
+- First restore the database using the practice.bak file
 - Clone this repo using "git clone https://github.com/vamsiGone/tier_arc"
 - In the web.Config file, Change the connection string
 - You need to manually create the BLL, DAO Projects
