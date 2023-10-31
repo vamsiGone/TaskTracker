@@ -1,6 +1,7 @@
 ﻿using BLL;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -172,6 +173,20 @@ namespace TaskTracker
                     if (chk != null)
                     {
                         chk.Enabled = true;
+                    }
+                }
+                else
+                {
+                    int id = Convert.ToInt32(e.CommandArgument);
+                    
+                    using (DataSet datagrid = objTransactionBO.EditTask(id))
+                    {
+                        if (datagrid != null && datagrid.Tables.Count > 0 && datagrid.Tables[0].Rows.Count > 0)
+                        {
+                            String text = datagrid.Tables[0].Rows[0]["Task"].ToString();
+                            string text1=text.Replace("\r\n", string.Empty);
+                            Response.Redirect(Convert.ToString(ConfigurationManager.AppSettings["AppUrl"])+ "ToDoList.aspx?sessionMail=" + currentUser + "&Tasktext=" + text1+"&id="+id);
+                        }
                     }
                 }
             }

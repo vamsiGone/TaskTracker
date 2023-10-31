@@ -20,9 +20,11 @@ namespace TaskTracker
         [Obsolete]
         protected void Page_Load(object sender, EventArgs e)
         {
+           
             Session["Title"] = "Pending";
             currentUser = Session["CurrentUser"] as string;
             DateIn = DateInput.Text;
+
 
             if (currentUser == null || currentUser == String.Empty || currentUser == "")
             {
@@ -32,6 +34,16 @@ namespace TaskTracker
 
             if (!IsPostBack)
             {
+
+
+                if (Request.QueryString["sessionMail"] == currentUser && Request.QueryString["sessionMail"] != null)
+                {
+                    txtTask.Text = Request.QueryString["Tasktext"];
+                    Add_Button.Text = "Save";
+                    ViewState["id"] = Request.QueryString["id"];
+                }
+
+                
                 DateTime datetimeValue = DateTime.Now;
                 DateIn = datetimeValue.ToString("dd-MM-yyyy");
                 DateInput.Text = DateIn;
