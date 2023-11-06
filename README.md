@@ -19,3 +19,43 @@ A step-by-step guide on how to install and run this project. You can also includ
 - Add the BLL, DAO projects to the solution by adding a project of class library of .Net Framework.
 
 
+    
+  ## Modified Sp  
+-- exec [CheckEmployeeCredential] @LoginID='vamsi@admin.com',@pwd='Admin@123#'    
+CREATE procedure [dbo].[CheckEmployeeCredential]    
+(    
+@LoginID varchar(500)='',    
+@pwd  varchar(100)=''    
+)    
+as    
+begin  
+if(@pwd!='')  
+begin  
+if exists(select 1 from Register where Email=@LoginID and Password=@pwd)    
+begin    
+select 1  as Redirect    
+select * from Register where Email=@LoginID     
+end    
+else    
+begin    
+select 0 as Redirect    
+end  
+end  
+else  
+if exists(select 1 from Register where Email=@LoginID)    
+begin    
+select 1  as Redirect      
+end    
+else    
+begin    
+select 0 as Redirect    
+end  
+end   
+  
+    
+    
+    
+    
+    
+
+
