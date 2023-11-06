@@ -189,6 +189,8 @@ namespace AdminControl
                         if (Status == "1")
                         {
                             UsersDataBind();
+
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('error','User Deleted')});", true);
                         }
 
                     }

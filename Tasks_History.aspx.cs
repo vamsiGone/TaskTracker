@@ -85,6 +85,8 @@ namespace TaskTracker
                         if (Status == "1")
                         {
                             BindGrid();
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('error','Task Deleted')});", true);
+
                         }
 
                     }
@@ -98,6 +100,8 @@ namespace TaskTracker
                 if (chk != null)
                 {
                     chk.Enabled = true;
+                    ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('info','Uncheck the checkbox to make the task Incomplete')});", true);
+
                 }
             }
         }
@@ -111,7 +115,7 @@ namespace TaskTracker
             Label Lblrpt = (Label)item.FindControl("lblrpt");
             int id = Convert.ToInt32(Lblrpt.Text);
 
-            //ClientScript.RegisterStartupScript(GetType(), "alert", "confirm('Are you sure to make the task Imcomplete...?');", true);
+            ClientScript.RegisterStartupScript(GetType(), "alert", "confirm('Are you sure to make the task Imcomplete...?');", true);
             if (!(chkSelect.Checked))
             {
                 if (id != 0 && id > 0)

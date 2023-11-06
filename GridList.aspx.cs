@@ -107,6 +107,8 @@ namespace TaskTracker
                                 if (Status == "1")
                                 {
                                     Binddata();
+                                    ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('info','Task Marked as Incomplete')});", true);
+
                                 }
                             }
                         }
@@ -132,6 +134,8 @@ namespace TaskTracker
                                 if (Status == "1")
                                 {
                                     Binddata();
+                                    ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Task Completed')});", true);
+
                                 }
                             }
                         }
@@ -158,6 +162,8 @@ namespace TaskTracker
                         if (Status == "1")
                         {
                             Binddata();
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('warning','Task Deleted')});", true);
+
                         }
 
                     }

@@ -15,6 +15,8 @@ namespace TaskTracker
     {
         [Obsolete]
         TransactionBO objTransactionBO = new TransactionBO();
+        [Obsolete]
+        LoginBO objLoginBO = new LoginBO();
 
         public string Name = "";
         public string currentUser = "";
@@ -29,22 +31,17 @@ namespace TaskTracker
         {
             Name = Session["Name"] as string;
             currentUser = Session["CurrentUser"] as string;
-            PhotoUrl = Session["PhotoUrl"] as string;
-        
+            PhotoUrl = Session["PhotoUrl"] as string;       
             TasksCreated = Session["TasksCreated"] as string;
             TasksCompleted = Session["TasksCompleted"] as string;
-            pwd = Session["pwd"] as string;
-
-      
+            pwd = Session["pwd"] as string;     
         }
 
         protected void Logout_Click(object sender, EventArgs e)
         {
-            Session["currentUser"] = "";
             Session["Name"] = "";
             Session["CurrentUser"] = "";
-            Session["pwd"] = "";
-    
+            Session["pwd"] = "";    
             Session["PhotoUrl"] = "";
             Session["TasksCreated"] = "";
             Session["TasksCompleted"] = "";
@@ -146,19 +143,34 @@ namespace TaskTracker
             }
         }
 
+        [Obsolete]
         protected void ForgotMail_Click(object sender, EventArgs e)
         {
-            string ToMail = EmailEnter.Text.Trim();
-            string Subject = "Forgot Password";
-            string Body = "<h2>Dear " + Name + ",</h2><br/><br/><p>You had Requested for forgot password.<br/> If not please make sure that your " +
-                 "account was safe.</p><br/><br/><h3>Your Current Password: " + pwd + "</h3><br/><br/><p>Thanks & Regards,<br/><br/>Task Tracker Team.</p>";
-            
-            bool flag = SendMail(ToMail, Subject, Body);
-            if(flag)
+                string ToMail = EmailEnter.Text.Trim();
+            using (DataSet ds = objLoginBO.CheckUserCredential(ToMail, ""))
             {
-                ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Email Sent Successfully!')});", true);
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    string Redirect = (ds.Tables[0].Rows[0]["Redirect"].ToString());
 
+                    if (Redirect == "1")
+                    {
+                        string Subject = "Forgot Password";
+                        string Body = "<h2>Dear " + Name + ",</h2><br/><br/><p>You had Requested for forgot password.<br/> If not please make sure that your " +
+                             "account was safe.</p><br/><br/><h3>Your Current Password: " + pwd + "</h3><br/><br/><p>Thanks & Regards,<br/><br/>Task Tracker Team.</p>";
+
+                        bool flag = SendMail(ToMail, Subject, Body);
+                        if (flag)
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Email Sent Successfully!')});", true);
+                            EmailEnter.Text = "";
+                            return;
+                        }
+                    }
+                }
+            }               
+            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('error','Email Id You entered is MisMatched')});", true);
+                
             }
         }  
     }
-}

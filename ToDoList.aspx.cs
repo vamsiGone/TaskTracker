@@ -82,6 +82,8 @@ namespace TaskTracker
                                 txtTask.Text = String.Empty;
 
                                 BindGrid();
+                                ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('info','Task Added')});", true);
+
                             }
                             txtTask.Text = String.Empty;
 
@@ -111,6 +113,8 @@ namespace TaskTracker
                                 txtTask.Text = String.Empty;
 
                                 BindGrid();
+                                ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success',' Task Saved Successfully')});", true);
+
                             }
                             txtTask.Text = String.Empty;
 
@@ -159,6 +163,8 @@ namespace TaskTracker
                         if (Status == "1")
                         {
                             BindGrid();
+                            ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('error','Task Deleted)});", true);
+
                         }
 
                     }
@@ -204,6 +210,8 @@ namespace TaskTracker
                             if (Status == "1")
                             {
                                 BindGrid();
+                                ScriptManager.RegisterStartupScript(this.Page, GetType(), "AlertMessage", "$(function(){AlertMessage('success','Task completed')});", true);
+
                             }
                         }
                     }

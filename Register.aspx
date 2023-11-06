@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <asp:Label ID="lblPassword" class="label" runat="server" AssociatedControlID="txtPassword">Password:</asp:Label><br />
                             <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" Style="display: inline-block;"></asp:TextBox>
-                            &nbsp;&nbsp;<span style="color: white"><i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#Policy" title="click"></i></span><br />
+                            &nbsp;&nbsp;<span style="color: white;cursor :pointer;"><i class="bi bi-info-circle" data-toggle="modal" data-target="#Policy"></i></span><br />
 
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Password should not be empty" ForeColor="#66FF33" Display="Dynamic" ControlToValidate="txtPassword"></asp:RequiredFieldValidator><br />
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Check the Password Policy, and Enter Again"

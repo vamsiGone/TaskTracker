@@ -77,7 +77,7 @@
                             <asp:Label ID="lblrpt" runat="server" Text='<%# Eval("oid") %>' Visible="False"></asp:Label>
                             <asp:ImageButton ID="ImageButton" runat="server" data-toggle="tooltip" title="Edit" CommandName="Edit" CommandArgument='<%# Eval("oid") %>' ImageUrl="~/Images/edit.png" EnableEventValidation="false" Style="width: 30px" />&nbsp;&nbsp;
 
-                                        <asp:ImageButton ID="btnDelete" runat="server" data-toggle="tooltip" title="Delete" CommandName="Delete" CommandArgument='<%# Eval("oid") %>' ImageUrl="~/Images/delete.png" EnableEventValidation="false" OnClientClick="return confirm ('Are you sure you sure to Delete ?')" Style="width: 30px" />
+                            <asp:ImageButton ID="btnDelete" runat="server" data-toggle="tooltip" title="Delete" CommandName="Delete" CommandArgument='<%# Eval("oid") %>' ImageUrl="~/Images/delete.png" EnableEventValidation="false" OnClientClick="return confirm ('Are you sure you sure to Delete ?')" Style="width: 30px" />
 
                         </td>
                     </tr>
